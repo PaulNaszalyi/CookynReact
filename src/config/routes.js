@@ -2,17 +2,32 @@ import React from 'react'
 import {
     Route,
     Switch,
+    Redirect,
     BrowserRouter as Router
 } from 'react-router-dom'
 import Login from '../screens/login'
 import Home from "../screens/home"
 
-const Routing = () => {
+const Routing = (...props) => {
+    const token = !!localStorage.getItem('token')
+
+    const PublicRoute = ({component: Component, ...props}) => {
+        return (
+           <Route {...props} render={innerProps => token ? <Redirect to='/home' /> : <Component {...innerProps} />}/>
+        )
+    }
+
+    const PrivateRoute = ({component: Component, ...props}) => {
+        return (
+           <Route {...props} render={innerProps => token ? <Component {...innerProps} /> : <Redirect to='/' />}/>
+        )
+    }
+
     return (
         <Router>
             <Switch>
-                <Route exact path='/' component={Login} />
-                <Route exact path='/home' component={Home} />
+                <PublicRoute exact {...props} path='/' component={Login} />
+                <PrivateRoute exact {...props} path='/home' component={Home} />
             </Switch>
         </Router>
     )

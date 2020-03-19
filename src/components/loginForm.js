@@ -1,15 +1,61 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
+import {useHistory} from 'react-router-dom'
+import TitleForm from './titleForm'
+import LabelForm from "./labelForm"
+import InputForm from "./inputForm"
+import ButtonForm from "./buttonForm"
+import axios from 'axios'
 
 const Formulaire = styled.form`
-  border: 1px solid;
+`
+
+const DivForm = styled.div`
+  width: 85%;
+  max-width: 350px;
+  margin: auto;
 `
 
 const LoginForm = () => {
+    const [data, setData] = useState({})
+    const history = useHistory()
+
+    const handleChange = event => {
+        setData({...data, [event.target.name]: event.target.value})
+    }
+
+    const handleClick = event => {
+        event.preventDefault()
+
+        axios.post('http://localhost:3000/api/auth/login', data)
+            .then(res => {
+                if(res.data.errmsg) alert(res.data.errmsg)
+                else {
+                    localStorage.setItem('email', res.data.email)
+                    localStorage.setItem('idUser', res.data.idUser)
+                    localStorage.setItem('firstname', res.data.firstname)
+                    localStorage.setItem('lastname', res.data.lastname)
+                    localStorage.setItem('token', res.data.token)
+
+                    history.push('/home')
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    }
     return (
-        <Formulaire>
-            <p>CONNEXION</p>
-        </Formulaire>
+        <DivForm>
+            <TitleForm title='LOGIN'/>
+            <Formulaire onSubmit={handleClick}>
+                <LabelForm label="Adresse mail"/><br/>
+                <InputForm name="email" onChange={handleChange}/><br/>
+                <LabelForm label="Mot de passe"/><br/>
+                <InputForm type="password" name="password" onChange={handleChange}/><br/>
+                <ButtonForm/>
+            </Formulaire>
+        </DivForm>
     )
 }
 

@@ -1,56 +1,86 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
-import {useForm} from 'react-hook-form'
+import {useHistory} from 'react-router-dom'
+import axios from 'axios'
+import Title from '../components/titleForm'
+import ButtonForm from "./buttonForm"
 
 const StyledInput = styled.input`
   border: 1px solid #b21f66;
-  height: 20px;
-  border-radius: 5px;
+  height: 35px;
+  width: 100%;
   margin-bottom: 15px;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: 'Sen', sans-serif;
 `
 
 const Formulaire = styled.form`
 `
 
 const DivInscription = styled.div`
-  width: 45%;
+  width: 85%;
+  max-width: 350px;
+  margin: auto;
+`
+
+const LabelInput = styled.label`
+  font-size: 90%;
 `
 
 const RegsiterForm = () => {
-    const {handleSubmit, register, errors} = useForm()
+    const [data, setData] = useState({})
+    const history = useHistory()
 
-    const sendData = values => {
-        fetch('http://localhost:3000/api/user', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-        })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    const handleChange = (event) => {
+        setData({...data, [event.target.name]: event.target.value})
+    }
+
+    const handleClick = event => {
+        event.preventDefault()
+        //On vérifie d'abord les 2 mots de passe
+        if (data.password === data.passwordConfirm) {
+            //On crée un objet sans le passwordConfirm
+            const dataUser = {
+                email: data.email,
+                firstname: data.firstname,
+                lastname: data.lastname,
+                password: data.password
+            }
+            axios.post('http://localhost:3000/api/user', dataUser)
+                .then(res => {
+                    localStorage.setItem('email', res.data.email)
+                    localStorage.setItem('firstname', res.data.firstname)
+                    localStorage.setItem('lastname', res.data.lastname)
+                    localStorage.setItem('token', res.data.token)
+
+                    console.log(res)
+
+                    history.push('/home')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        } else alert('Les mots de passe sont différents')
 
     }
+
     return (
         <DivInscription>
-            <h2>INSCRIPTION</h2>
-            <Formulaire onSubmit={handleSubmit(sendData)}>
-                <label>Adresse mail</label><br/>
-                <StyledInput type="text" name="email" ref={register}/><br/>
-                <label>Prénom</label><br/>
-                <StyledInput type="text" name="firstname" ref={register}/><br/>
-                <label>Nom</label><br/>
-                <StyledInput type="text" name="lastname" ref={register}/><br/>
-                <label>Mot de passe</label><br/>
-                <StyledInput type="text" name="password" ref={register}/><br/>
-                <label>Confirmer le mot de passe</label><br/>
-                <StyledInput type="text" name="passwordConfirm" ref={register}/><br/>
-                <button type="submit" name="send">ENVOYER</button>
+            <Title title={"INSCRIPTION"}/>
+            <Formulaire onSubmit={handleClick}>
+                <LabelInput>Adresse mail</LabelInput><br/>
+                <StyledInput type="text" name="email" onChange={handleChange} required/><br/>
+                <LabelInput>Prénom</LabelInput><br/>
+                <StyledInput type="text" name="firstname" onChange={handleChange} required/><br/>
+                <LabelInput>Nom</LabelInput><br/>
+                <StyledInput type="text" name="lastname" onChange={handleChange} required/><br/>
+                <LabelInput>Mot de passe</LabelInput><br/>
+                <StyledInput type="password" name="password" onChange={handleChange} required/><br/>
+                <LabelInput>Confirmer le mot de passe</LabelInput><br/>
+                <StyledInput type="password" name="passwordConfirm" onChange={handleChange} required/><br/>
+                <ButtonForm/>
             </Formulaire>
         </DivInscription>
     )
