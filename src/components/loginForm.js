@@ -28,7 +28,7 @@ const LoginForm = () => {
     const handleClick = event => {
         event.preventDefault()
 
-        axios.post('http://localhost:3000/api/auth/login', data)
+        axios.post('https://cookynapi.herokuapp.com/api/auth/login', data)
             .then(res => {
                 if (res.data.errmsg) alert(res.data.errmsg)
                 else {
