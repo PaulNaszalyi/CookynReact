@@ -12,6 +12,7 @@ const Button = styled.button`
   margin-top: 50px;
   transition: 0.3s;
   outline: none;
+  text-transform: uppercase;
   
   :hover {
     background-color: transparent;

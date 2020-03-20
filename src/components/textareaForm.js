@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledInput = styled.input`
+const StyledInput = styled.textarea`
   border: 1px solid #b21f66;
-  height: 35px;
   width: 100%;
   margin-bottom: 15px;
   outline: none;
@@ -13,14 +12,13 @@ const StyledInput = styled.input`
 `
 
 
-const InputForm = ({
-    name = "",
-    type = "text",
-    onChange = null
-}) => {
+const TextareaForm = ({
+                          name = "",
+                          onChange = null
+                      }) => {
     return (
-        <StyledInput type={type} name={name} onChange={onChange}/>
+        <StyledInput name={name} onChange={onChange}/>
     )
 }
 
-export default InputForm
+export default TextareaForm

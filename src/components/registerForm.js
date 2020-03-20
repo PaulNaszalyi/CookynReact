@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import Title from '../components/titleForm'
 import ButtonForm from "./buttonForm"
+import RedStar from "./redStar"
 
 const StyledInput = styled.input`
   border: 1px solid #b21f66;
@@ -70,15 +71,15 @@ const RegsiterForm = () => {
         <DivInscription>
             <Title title={"INSCRIPTION"}/>
             <Formulaire onSubmit={handleClick}>
-                <LabelInput>Adresse mail</LabelInput><br/>
+                <LabelInput>Adresse mail</LabelInput><RedStar/><br/>
                 <StyledInput type="text" name="email" onChange={handleChange} required/><br/>
-                <LabelInput>Prénom</LabelInput><br/>
+                <LabelInput>Prénom</LabelInput><RedStar/><br/>
                 <StyledInput type="text" name="firstname" onChange={handleChange} required/><br/>
-                <LabelInput>Nom</LabelInput><br/>
+                <LabelInput>Nom</LabelInput><RedStar/><br/>
                 <StyledInput type="text" name="lastname" onChange={handleChange} required/><br/>
-                <LabelInput>Mot de passe</LabelInput><br/>
+                <LabelInput>Mot de passe</LabelInput><RedStar/><br/>
                 <StyledInput type="password" name="password" onChange={handleChange} required/><br/>
-                <LabelInput>Confirmer le mot de passe</LabelInput><br/>
+                <LabelInput>Confirmer le mot de passe</LabelInput><RedStar/><br/>
                 <StyledInput type="password" name="passwordConfirm" onChange={handleChange} required/><br/>
                 <ButtonForm/>
             </Formulaire>

@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import Login from '../screens/login'
 import Home from "../screens/home"
+import CreateRecipe from "../screens/createRecipe"
 
 const Routing = (...props) => {
     const token = !!localStorage.getItem('token')
@@ -28,6 +29,7 @@ const Routing = (...props) => {
             <Switch>
                 <PublicRoute exact {...props} path='/' component={Login} />
                 <PrivateRoute exact {...props} path='/home' component={Home} />
+                <PrivateRoute exact {...props} path='/create-recipe' component={CreateRecipe} />
             </Switch>
         </Router>
     )
