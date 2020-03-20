@@ -14,7 +14,7 @@ const Image = ({
                }) => {
 
     return (
-        <Icon src={src} alt="Loading Error" width={width} height={height} onClick={onClick}/>
+        <Icon src={src} alt="Loading Error" width={`${width}`} height={`${height}`} onClick={onClick}/>
     )
 }
 

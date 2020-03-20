@@ -6,7 +6,7 @@ const StyledNavBar = styled.div`
     position: fixed;
     width: 100%;
     height: 50;
-    background-color: coral;
+    background-color: #b21f66;
     left: 0;
     top: 0;
     display: flex;
