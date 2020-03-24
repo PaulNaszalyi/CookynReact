@@ -20,7 +20,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BFMTV" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ReactTips" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="P:\Programmes\JetBrains\WebStorm 2018.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
@@ -35,7 +35,11 @@
       <option name="presentableId" value="Default" />
       <updated>1584607941866</updated>
       <workItem from="1584607944792" duration="26733000" />
-      <workItem from="1584693978959" duration="22999000" />
+      <workItem from="1584693978959" duration="24015000" />
+      <workItem from="1584724329840" duration="7882000" />
+      <workItem from="1584793593941" duration="5025000" />
+      <workItem from="1584900386455" duration="5612000" />
+      <workItem from="1585050641795" duration="767000" />
     </task>
     <servers />
   </component>
@@ -43,14 +47,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="573" y="326" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584723718479">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="573" y="326" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1040@0.0.2560.1040" timestamp="1584723718479" />
     <state x="529" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584711706347">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="529" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1584711706347" />
-    <state x="481" y="278" key="FileChooserDialogImpl" timestamp="1584710929813">
+    <state x="481" y="278" key="FileChooserDialogImpl" timestamp="1585051977823">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="481" y="278" key="FileChooserDialogImpl/0.0.2560.1040@0.0.2560.1040" timestamp="1584710929813" />
+    <state x="481" y="278" key="FileChooserDialogImpl/0.0.2560.1040@0.0.2560.1040" timestamp="1585051977823" />
     <state width="1378" height="117" key="GridCell.Tab.0.bottom" timestamp="1584609718643">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -67,9 +75,9 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="1378" height="117" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1584609718643" />
-    <state x="462" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1584633143965">
+    <state x="462" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1584738002320">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="462" y="230" width="672" height="678" key="search.everywhere.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1584633143965" />
+    <state x="462" y="230" width="672" height="678" key="search.everywhere.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1584738002320" />
   </component>
 </project>

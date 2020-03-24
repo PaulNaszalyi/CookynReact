@@ -10,8 +10,8 @@ const DivContent = styled.div`
 `
 
 const DivImage = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 35%;
+  height: 160px;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url(${prop => prop.path});
@@ -19,7 +19,8 @@ const DivImage = styled.div`
 `
 
 const DivDescription = styled.div`
-  padding: 5px;
+  padding: 15px;
+  width: 65%;
 `
 
 const TitleRecipe = styled.h3`
@@ -28,6 +29,7 @@ const TitleRecipe = styled.h3`
 
 const ItemListRecipe = ({source = "", title = "", description = "", idRecipe = ""}) => {
     const history = useHistory()
+    if(description.length >= 65) description = `${description.slice(0, 65)}...`
 
     let path = ""
     if (source === "") path = "https://img-3.journaldesfemmes.fr/yWGwX9NZacClqzNE1Ng5Xh32mBk=/750x/smart/image-icu/10027543_1217914170.jpg"

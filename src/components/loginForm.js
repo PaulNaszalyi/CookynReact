@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
-import TitleForm from './titleForm'
+import TitleH2 from './titleH2'
 import LabelForm from "./labelForm"
 import InputForm from "./inputForm"
 import ButtonForm from "./buttonForm"
@@ -38,7 +38,7 @@ const LoginForm = () => {
                     localStorage.setItem('lastname', res.data.lastname)
                     localStorage.setItem('token', res.data.token)
 
-                    history.push('/home')
+                    window.location.reload()
                 }
             })
             .catch(err => {
@@ -48,7 +48,7 @@ const LoginForm = () => {
     }
     return (
         <DivForm>
-            <TitleForm title='LOGIN'/>
+            <TitleH2 title='LOGIN'/>
             <Formulaire onSubmit={handleClick}>
                 <LabelForm label="Adresse mail"/><RedStar/><br/>
                 <InputForm name="email" onChange={handleChange}/><br/>

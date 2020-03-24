@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
-import Title from '../components/titleForm'
+import Title from './titleH2'
 import ButtonForm from "./buttonForm"
 import RedStar from "./redStar"
 

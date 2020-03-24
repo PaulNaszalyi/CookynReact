@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import ItemListRecipe from "./itemListRecipe"
+import BigText from "./bigText"
 
 const fetchRecipes = (keyword) => {
     return axios.get(`http://localhost:3000/api/findRecettes/${keyword}`)
@@ -21,11 +22,12 @@ const GetRecipes = ({keyword = "*"}) => {
         }
         getRecipes()
     }, [keyword]);
-    console.log(data)
 
     return (
         <div>
-            {data.map(recipe => {
+            {data.length === 0 ?
+                <BigText content="Aucune recette"/> :
+                data.map(recipe => {
                 return <ItemListRecipe
                     key={recipe._id}
                     idRecipe={recipe._id}

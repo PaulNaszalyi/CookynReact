@@ -5,14 +5,10 @@ const StyledH2 = styled.h2`
   margin: 35px 0;
 `
 
-const TitleForm = ({
+const TitleH2 = ({
     title = ""
 }) => {
-    return (
-        <StyledH2>
-            {title}
-        </StyledH2>
-    )
+    return <StyledH2>{title}</StyledH2>
 }
 
-export default TitleForm
+export default TitleH2
