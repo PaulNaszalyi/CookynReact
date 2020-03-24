@@ -4,7 +4,7 @@ import ItemListRecipe from "./itemListRecipe"
 import BigText from "./bigText"
 
 const fetchRecipes = (keyword) => {
-    return axios.get(`https://cookynapi.herokuapp.com/api/findRecettes/${keyword}`)
+    return axios.get(`http://localhost:3000/api/findRecettes/${keyword}`)
         .then(res => {
             return res.data
         })

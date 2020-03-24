@@ -39,7 +39,7 @@ const RecipeForm = () => {
     const [valid, setValid] = useState(false)
 
     const postRecipe = async data => {
-        await axios.post('https://cookynapi.herokuapp.com/api/recette', data)
+        await axios.post('http://localhost:3000/api/recette', data)
             .then(res => {
                 if (res.data.errmsg) alert(res.data.errmsg)
                 else setValid(true)
@@ -50,7 +50,7 @@ const RecipeForm = () => {
     }
 
     const postPhoto = async file => {
-        await axios.post("https://cookynapi.herokuapp.com/api/photo", file)
+        await axios.post("http://localhost:3000/api/photo", file)
             .then(res => { // then print response status
                 if (res.data.errmsg) alert(res.data.errmsg)
                 else setValid(true)
