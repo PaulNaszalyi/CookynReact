@@ -1,19 +1,13 @@
 import React from "react"
 import NavBar from "../components/navbar"
 import GetRecipes from "../components/getRecipes"
-import styled from "styled-components"
-
-const LastRecipes = styled.h2`
-  margin: 15px;
-  font-size: 20px;
-  border-bottom: 1px solid #b21f66;
-`
+import TitleH2 from "../components/titleH2"
 
 const Home = () => {
     return (
         <div>
             <NavBar/>
-            <LastRecipes>Les dernières recettes</LastRecipes>
+            <TitleH2 title="Les dernières recettes" />
             <GetRecipes/>
         </div>
     )

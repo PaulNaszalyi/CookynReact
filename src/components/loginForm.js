@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {useHistory} from 'react-router-dom'
 import TitleH2 from './titleH2'
 import LabelForm from "./labelForm"
 import InputForm from "./inputForm"
@@ -19,7 +18,6 @@ const DivForm = styled.div`
 
 const LoginForm = () => {
     const [data, setData] = useState({})
-    const history = useHistory()
 
     const handleChange = event => {
         setData({...data, [event.target.name]: event.target.value})

@@ -9,6 +9,7 @@ import Login from '../screens/login'
 import Home from "../screens/home"
 import CreateRecipe from "../screens/createRecipe"
 import ViewRecipe from "../screens/viewRecipe"
+import Favorites from "../screens/favorites"
 
 const Routing = (...props) => {
     const token = !!localStorage.getItem('token')
@@ -32,6 +33,7 @@ const Routing = (...props) => {
                 <PrivateRoute exact {...props} path='/home' component={Home} />
                 <PrivateRoute exact {...props} path='/create-recipe' component={CreateRecipe} />
                 <PrivateRoute exact {...props} path='/view-recipe/:id' component={ViewRecipe} />
+                <PrivateRoute exact {...props} path='/favorites' component={Favorites} />
             </Switch>
         </Router>
     )

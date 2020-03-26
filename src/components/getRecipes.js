@@ -28,14 +28,14 @@ const GetRecipes = ({keyword = "*"}) => {
             {data.length === 0 ?
                 <BigText content="Aucune recette"/> :
                 data.map(recipe => {
-                return <ItemListRecipe
-                    key={recipe._id}
-                    idRecipe={recipe._id}
-                    title={recipe.name}
-                    source={recipe.photo}
-                    description={recipe.description}
-                />
-            })}
+                    return <ItemListRecipe
+                        key={recipe._id}
+                        idRecipe={recipe._id}
+                        title={recipe.name}
+                        source={recipe.photo}
+                        description={recipe.description}
+                    />
+                })}
         </div>
     )
 }

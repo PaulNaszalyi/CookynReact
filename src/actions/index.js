@@ -1,3 +1,4 @@
-import * as counter from './counter'
+import * as favorite from './favorite'
+import * as recipe from './recipe'
 
-export default { counter }
+export default { favorite, recipe }

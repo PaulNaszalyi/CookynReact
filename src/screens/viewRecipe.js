@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react"
 import NavBar from "../components/navbar";
 import Image from "../components/image"
-import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import styled from 'styled-components'
 import PATH_FTP from '../config/env'
@@ -9,56 +8,18 @@ import DivWhiteBoxShadow from "../components/divWhiteBoxShadow"
 import TitleH1 from "../components/titleH1"
 import RedHeart from '../assets/red-heart.png'
 import BlackHeart from '../assets/black-heart.png'
+//---REDUX
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import allTheActions from '../actions'
+//---
+
 
 const SubTitle = styled.h3`
   margin: 30px 0 15px 0;
 `
 
-const getRecipe = (idRecipe) => {
-    return axios.get(`http://localhost:3000/api/recette/${idRecipe.id}`)
-        .then(res => {
-            return res.data
-        })
-        .catch(err => {
-            console.log(err)
-            return err
-        })
-}
-
-const getFavorite = (data) => {
-    return axios.post(`http://localhost:3000/api/getfavoris`, data)
-        .then(res => {
-            if (res.data.errmsg) alert(res.data.errmsg)
-            else return res.data.found
-        })
-        .catch(err => {
-            return err
-        })
-}
-
-const postFavorite = (data) => {
-    return axios.post(`http://localhost:3000/api/favoris`, data)
-        .then(res => {
-            if (res.data.errmsg) alert(res.data.errmsg)
-            else return true
-        })
-        .catch(err => {
-            return err
-        })
-}
-
-const deleteFavorite = (data) => {
-    return axios.delete(`http://localhost:3000/api/favoris`)
-        .then(res => {
-            if (res.data.errmsg) alert(res.data.errmsg)
-            else return true
-        })
-        .catch(err => {
-            return err
-        })
-}
-
-const ViewRecipe = () => {
+const ViewRecipe = props => {
     const [data, setData] = useState([])
     const [favorite, setFavorite] = useState(0)
     const idRecipe = useParams()
@@ -67,33 +28,42 @@ const ViewRecipe = () => {
 
     const dataFavorite = {idUser: localStorage.getItem('idUser'), idRecette: idRecipe.id}
 
-    const addFavorite = async () => {
-        if (await postFavorite(dataFavorite)) setFavorite(1)
-    }
-
-    const removeFavorite = async () => {
-        if (await deleteFavorite(dataFavorite)) setFavorite(0)
-    }
-
     useEffect(() => {
         const fetchRecipe = async () => {
-            await setData(await getRecipe(idRecipe))
+            await setData(await props.actions.recipe.callGetRecipe(idRecipe.id))
         }
         fetchRecipe()
-    }, [idRecipe])
+    }, [props.actions.recipe, idRecipe.id])
+
+    useEffect(() => {
+        const fetchFavorite = async () => {
+            await setFavorite(await props.actions.favorite.callGetFavorite(dataFavorite))
+        }
+        fetchFavorite()
+    }, [props.actions.favorite, dataFavorite])
 
     if (data.steps !== undefined) stepsJSON = JSON.parse(data.steps)
 
     return (
         <div>
             <NavBar/>
-            <Image src={`${path}/${data.photo}`} width={"100%"} height={"200"} alt={""}/>
+            <Image src={`${path}/${data.photo}`} width={"100%"} height={"auto"} alt={""}/>
             <TitleH1 title={data.name}/>
             <DivWhiteBoxShadow content={
                 <div>
                     {
-                        favorite ? <Image src={RedHeart} onClick={() => alert("CLICK")} width={25} height={25}/>
-                            : <Image src={BlackHeart} onClick={addFavorite} width={25} height={25}/>
+                        favorite ?
+                            <Image
+                                src={RedHeart}
+                                onClick={async () => setFavorite(await props.actions.favorite.callDeleteFavorite(dataFavorite))}
+                                width={25} height={25}
+                            />
+                            :
+                            <Image
+                                src={BlackHeart}
+                                onClick={() => setFavorite(props.actions.favorite.callPostFavorite(dataFavorite))}
+                                width={25} height={25}
+                            />
                     }
 
                     <SubTitle>Description</SubTitle>
@@ -105,7 +75,7 @@ const ViewRecipe = () => {
                     <SubTitle>Les étapes</SubTitle>
                     <ol>
                         {stepsJSON.map(recipe => {
-                            return (<li key={recipe.label}>{recipe.value}</li>)
+                            return (<li key={recipe.label}>{recipe.value}<br/><br/></li>)
                         })}
                     </ol>
                 </div>
@@ -113,4 +83,18 @@ const ViewRecipe = () => {
         </div>
     )
 }
-export default ViewRecipe
+
+
+const mapStateToProps = state => ({
+    favoriteState: state.favorite,
+    recipeState: state.recipe
+})
+
+const mapDispatchToProps = () => dispatch => ({
+    actions: {
+        favorite: bindActionCreators(allTheActions.favorite, dispatch),
+        recipe: bindActionCreators(allTheActions.recipe, dispatch)
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewRecipe)

@@ -22,10 +22,20 @@ const NavBar = () => {
 
     return (
         <StyledNavBar>
-            <Image src={require("../assets/back.png")} width={40} height={40} onClick={() => window.history.back()}/>
-            <Image src={require("../assets/home.png")} width={40} height={40} onClick={() => history.push('/home')}/>
-            <Image src={require("../assets/plus.png")} width={40} height={40} onClick={() => history.push('/create-recipe')}/>
-            <Image src={require("../assets/heart.png")} width={40} height={40} onClick={() => history.push('/favorites')}/>
+            <div>
+                <Image src={require("../assets/back.png")} width={40} height={40}
+                       onClick={() => window.history.back()}/>
+                <Image src={require("../assets/home.png")} width={40} height={40}
+                       onClick={() => history.push('/home')}/>
+            </div>
+            <Image src={require("../assets/COOKYN.png")} width={"auto"} height={"55px"}
+                   onClick={() => history.push('/home')}/>
+            <div>
+                <Image src={require("../assets/plus.png")} width={40} height={40}
+                       onClick={() => history.push('/create-recipe')}/>
+                <Image src={require("../assets/heart.png")} width={40} height={40}
+                       onClick={() => history.push('/favorites')}/>
+            </div>
         </StyledNavBar>
     )
 }

@@ -20,7 +20,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ReactTips" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="P:\Programmes\JetBrains\WebStorm 2018.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
@@ -39,7 +39,9 @@
       <workItem from="1584724329840" duration="7882000" />
       <workItem from="1584793593941" duration="5025000" />
       <workItem from="1584900386455" duration="5612000" />
-      <workItem from="1585050641795" duration="1047000" />
+      <workItem from="1585050641795" duration="15746000" />
+      <workItem from="1585156247559" duration="10410000" />
+      <workItem from="1585220268353" duration="2085000" />
     </task>
     <servers />
   </component>

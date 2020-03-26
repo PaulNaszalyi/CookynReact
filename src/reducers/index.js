@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
-import counter from './counter'
+import favorite from './favorite'
+import recipe from './recipe'
 
 export default combineReducers({
-  counter
+  favorite,
+  recipe
 })
