@@ -2,9 +2,10 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import ItemListRecipe from "./itemListRecipe"
 import BigText from "./bigText"
+import ENV from '../config/env'
 
 const fetchRecipes = (keyword) => {
-    return axios.get(`http://localhost:3000/api/findRecettes/${keyword}`)
+    return axios.get(`${ENV.API}/findRecettes/${keyword}`)
         .then(res => {
             return res.data
         })
@@ -21,7 +22,7 @@ const GetRecipes = ({keyword = "*"}) => {
             await setData(await fetchRecipes(keyword))
         }
         getRecipes()
-    }, [keyword]);
+    }, [])
 
     return (
         <div>

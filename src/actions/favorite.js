@@ -1,4 +1,5 @@
 import axios from "axios";
+import ENV from "../config/env";
 
 export const ADD_FAVORITE = 'ADD_FAVORITE'
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
@@ -28,7 +29,7 @@ export const getFavoritesByUser = data => ({
 
 
 export const callPostFavorite = (data) => dispatch => {
-    return axios.post(`http://localhost:3000/api/favoris`, data)
+    return axios.post(`${ENV.API}/favoris`, data)
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
@@ -42,7 +43,7 @@ export const callPostFavorite = (data) => dispatch => {
 }
 
 export const callDeleteFavorite = (data) => dispatch => {
-    return axios.delete(`http://localhost:3000/api/favoris`, {data: data})
+    return axios.delete(`${ENV.API}/favoris`, {data: data})
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
@@ -56,7 +57,7 @@ export const callDeleteFavorite = (data) => dispatch => {
 }
 
 export const callGetFavorite = (data) => dispatch => {
-    return axios.post(`http://localhost:3000/api/getfavoris`, data)
+    return axios.post(`${ENV.API}/getfavoris`, data)
         .then(res => {
             if (res.data.errmsg) alert(res.data.errmsg)
             else return res.data.found
@@ -67,7 +68,7 @@ export const callGetFavorite = (data) => dispatch => {
 }
 
 export const callGetFavoritesByUser = (data) => dispatch => {
-    return axios.get(`http://localhost:3000/api/getfavorisbyuser/${data}`)
+    return axios.get(`${ENV.API}/getfavorisbyuser/${data}`)
         .then(res => {
             if (res.data.errmsg) alert(res.data.errmsg)
             else return res.data

@@ -5,6 +5,7 @@ import axios from 'axios'
 import Title from './titleH2'
 import ButtonForm from "./buttonForm"
 import RedStar from "./redStar"
+import ENV from "../config/env"
 
 const StyledInput = styled.input`
   border: 1px solid #b21f66;
@@ -49,7 +50,7 @@ const RegsiterForm = () => {
                 lastname: data.lastname,
                 password: data.password
             }
-            axios.post('http://localhost:3000/api/user', dataUser)
+            axios.post(`${ENV.API}/user`, dataUser)
                 .then(res => {
                     localStorage.setItem('email', res.data.email)
                     localStorage.setItem('firstname', res.data.firstname)

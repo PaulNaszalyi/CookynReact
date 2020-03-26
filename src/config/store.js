@@ -6,7 +6,7 @@ import thunk from "redux-thunk"
 import logger from 'redux-logger'
 
 const persistConfig = {
-    key: 'favorite',
+    key: 'favorites',
     storage: storage,
     whitelist: ['favorite'] // On indique le reducer qu'on souhaite stocker
 }

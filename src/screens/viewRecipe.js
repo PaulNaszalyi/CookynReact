@@ -3,7 +3,7 @@ import NavBar from "../components/navbar";
 import Image from "../components/image"
 import {useParams} from 'react-router-dom'
 import styled from 'styled-components'
-import PATH_FTP from '../config/env'
+import ENV from '../config/env'
 import DivWhiteBoxShadow from "../components/divWhiteBoxShadow"
 import TitleH1 from "../components/titleH1"
 import RedHeart from '../assets/red-heart.png'
@@ -21,9 +21,9 @@ const SubTitle = styled.h3`
 
 const ViewRecipe = props => {
     const [data, setData] = useState([])
-    const [favorite, setFavorite] = useState(0)
+    const [favorite, setFavorite] = useState(false)
     const idRecipe = useParams()
-    const path = PATH_FTP
+    const path = ENV.PATH_FTP
     let stepsJSON = []
 
     const dataFavorite = {idUser: localStorage.getItem('idUser'), idRecette: idRecipe.id}

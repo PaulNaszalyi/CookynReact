@@ -10,6 +10,7 @@ import styled from "styled-components"
 import axios from "axios";
 import Swal from 'sweetalert2'
 import Image from "./image"
+import ENV from '../config/env'
 
 const BottomFixed = styled.div`
   position: fixed;
@@ -39,7 +40,7 @@ const RecipeForm = () => {
     const [valid, setValid] = useState(false)
 
     const postRecipe = async data => {
-        await axios.post('http://localhost:3000/api/recette', data)
+        await axios.post(`${ENV.API}/recette`, data)
             .then(res => {
                 if (res.data.errmsg) alert(res.data.errmsg)
                 else setValid(true)
@@ -50,7 +51,7 @@ const RecipeForm = () => {
     }
 
     const postPhoto = async file => {
-        await axios.post("http://localhost:3000/api/photo", file)
+        await axios.post(`${ENV.API}/photo`, file)
             .then(res => { // then print response status
                 if (res.data.errmsg) alert(res.data.errmsg)
                 else setValid(true)

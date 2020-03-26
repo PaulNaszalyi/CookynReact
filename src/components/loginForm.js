@@ -6,6 +6,7 @@ import InputForm from "./inputForm"
 import ButtonForm from "./buttonForm"
 import RedStar from "./redStar"
 import axios from 'axios'
+import ENV from '../config/env'
 
 const Formulaire = styled.form`
 `
@@ -26,7 +27,7 @@ const LoginForm = () => {
     const handleClick = event => {
         event.preventDefault()
 
-        axios.post('http://localhost:3000/api/auth/login', data)
+        axios.post(`${ENV.API}/auth/login`, data)
             .then(res => {
                 if (res.data.errmsg) alert(res.data.errmsg)
                 else {
