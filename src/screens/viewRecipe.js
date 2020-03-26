@@ -30,14 +30,14 @@ const ViewRecipe = props => {
 
     useEffect(() => {
         const fetchRecipe = async () => {
-            await setData(await props.actions.recipe.callGetRecipe(idRecipe.id))
+            setData(await props.actions.recipe.callGetRecipe(idRecipe.id))
         }
         fetchRecipe()
     }, [props.actions.recipe, idRecipe.id])
 
     useEffect(() => {
         const fetchFavorite = async () => {
-            await setFavorite(await props.actions.favorite.callGetFavorite(dataFavorite))
+            setFavorite(await props.actions.favorite.callGetFavorite(dataFavorite))
         }
         fetchFavorite()
     }, [props.actions.favorite, dataFavorite])

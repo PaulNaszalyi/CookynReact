@@ -1,28 +1,31 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios'
 import ItemListRecipe from "./itemListRecipe"
 import BigText from "./bigText"
-import ENV from '../config/env'
+//---REDUX
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import allTheActions from '../actions'
+//---
 
-const fetchRecipes = (keyword) => {
-    return axios.get(`${ENV.API}/findRecettes/${keyword}`)
-        .then(res => {
-            return res.data
-        })
-        .catch(err => {
-            return err
-        })
-}
-
-const GetRecipes = ({keyword = "*"}) => {
+const GetRecipes = (props) => {
     const [data, setData] = useState([])
+    const [keyword, setKeyword] = useState(props.keyword)
+
+    const settingKeyword = async (value) => {
+        setKeyword(await value)
+    }
+
+    if (props.keyword === "")
+        settingKeyword("*")
+    else if (props.keyword !== "*")
+        settingKeyword(props.keyword)
 
     useEffect(() => {
         const getRecipes = async () => {
-            await setData(await fetchRecipes(keyword))
+            setData(await props.actions.recipe.callFetchRecipes(keyword))
         }
         getRecipes()
-    }, [])
+    }, [keyword])
 
     return (
         <div>
@@ -41,4 +44,16 @@ const GetRecipes = ({keyword = "*"}) => {
     )
 }
 
-export default GetRecipes
+const mapStateToProps = state => ({
+    favoriteState: state.favorite,
+    recipeState: state.recipe
+})
+
+const mapDispatchToProps = () => dispatch => ({
+    actions: {
+        favorite: bindActionCreators(allTheActions.favorite, dispatch),
+        recipe: bindActionCreators(allTheActions.recipe, dispatch)
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(GetRecipes)
