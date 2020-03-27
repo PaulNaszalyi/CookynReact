@@ -6,9 +6,9 @@ import thunk from "redux-thunk"
 import logger from 'redux-logger'
 
 const persistConfig = {
-    key: 'favorites',
+    key: 'cookyn',
     storage: storage,
-    whitelist: ['favorite'] // On indique le reducer qu'on souhaite stocker
+    whitelist: ['favorite', 'recipe', 'login'] // On indique au reducer ce qu'on souhaite stocker
 }
 const pReducer = persistReducer(persistConfig, reducers)
 const store = createStore(pReducer, applyMiddleware(logger, thunk))

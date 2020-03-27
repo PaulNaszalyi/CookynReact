@@ -27,7 +27,7 @@ const Home = () => {
     return (
         <div>
             <NavBar/>
-            <SearchBar onChange={handleChange}/>
+            <SearchBar onChange={handleChange} placeholder={"Rechercher..."}/>
             {data === "*" ? <TitleH2 title="Les dernières recettes"/> :
                 <TitleH2 title="Résultat(s) de votre recherche :"/>}
             <GetRecipes keyword={data}/>

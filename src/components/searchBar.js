@@ -18,9 +18,10 @@ const StyledInput = styled.input`
 `
 
 const SearchBar = ({
-    onChange = null
+    onChange = null,
+    placeholder = ""
 }) => {
-    return <StyledDiv><StyledInput type='text' name='searchBar' onChange={onChange}/></StyledDiv>
+    return <StyledDiv><StyledInput type='text' name='searchBar' onChange={onChange} placeholder={placeholder}/></StyledDiv>
 }
 
 export default SearchBar

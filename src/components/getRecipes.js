@@ -15,12 +15,11 @@ const GetRecipes = (props) => {
         setKeyword(await value)
     }
 
-
     settingKeyword(props.keyword)
 
     useEffect(() => {
         const getRecipes = async () => {
-            setData(await props.actions.recipe.callFetchRecipes(keyword))
+            setData(await props.actions.recipe.fetchRecipes(keyword).query)
         }
         getRecipes()
     }, [keyword, props.actions.recipe])

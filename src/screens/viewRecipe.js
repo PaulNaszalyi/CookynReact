@@ -28,16 +28,17 @@ const ViewRecipe = props => {
 
     const dataFavorite = {idUser: localStorage.getItem('idUser'), idRecette: idRecipe.id}
 
+
     useEffect(() => {
         const fetchRecipe = async () => {
-            setData(await props.actions.recipe.callGetRecipe(idRecipe.id))
+            setData(await props.actions.recipe.getRecipe(idRecipe.id).query)
         }
         fetchRecipe()
     }, [props.actions.recipe, idRecipe.id])
 
     useEffect(() => {
         const fetchFavorite = async () => {
-            setFavorite(await props.actions.favorite.callGetFavorite(dataFavorite))
+            setFavorite(await props.actions.favorite.getFavorite(dataFavorite).query)
         }
         fetchFavorite()
     }, [props.actions.favorite, dataFavorite])
@@ -55,13 +56,13 @@ const ViewRecipe = props => {
                         favorite ?
                             <Image
                                 src={RedHeart}
-                                onClick={async () => setFavorite(await props.actions.favorite.callDeleteFavorite(dataFavorite))}
+                                onClick={async () => setFavorite(await props.actions.favorite.removeFavorite(dataFavorite))}
                                 width={25} height={25}
                             />
                             :
                             <Image
                                 src={BlackHeart}
-                                onClick={() => setFavorite(props.actions.favorite.callPostFavorite(dataFavorite))}
+                                onClick={() => setFavorite(props.actions.favorite.addFavorite(dataFavorite))}
                                 width={25} height={25}
                             />
                     }

@@ -5,7 +5,8 @@ import RedStar from "./redStar"
 import Image from "./image";
 import InputForm from "./inputForm"
 import LabelForm from "./labelForm"
-import Background from '../assets/background2.jpg'
+import ButtonForm from "./buttonForm"
+import Form from "./loginForms"
 //---REDUX
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
@@ -19,7 +20,7 @@ const Formulaire = styled.form`
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
-  padding-top: 25px;
+  padding: 25px 0;
 `
 
 const DivInscription = styled.div`
@@ -31,10 +32,7 @@ const DivInscription = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  background-image: url(${Background});
-  background-position: center;
-  background-size: cover;
-  color: #fff;
+  color: #323232;
   position: fixed;
   top: 0;
   left: 50%;
@@ -47,20 +45,6 @@ const DivClose = styled.div`
   border-radius: 100px;
   margin-top: 20px;
   padding: 20px 22px;
-`
-
-const Button = styled.button`
-  width: 50%;
-  height: 50px;
-  margin: 15px auto;
-  border: 1px solid #fff;
-  background-color: transparent;
-  color: #fff;
-  font-family: 'Sen', sans-serif;
-  font-weight: bold;
-  font-size: 18px;
-  outline: none;
-  transition: 0.3s;
 `
 
 const RegsiterForm = props => {
@@ -82,7 +66,7 @@ const RegsiterForm = props => {
                 lastname: data.lastname,
                 password: data.password
             }
-            if(await props.actions.login.callRegister(dataUser)) window.location.reload()
+            if(await props.actions.login.register(dataUser).query) window.location.reload()
         } else alert('Les mots de passe sont différents')
 
     }
@@ -92,21 +76,26 @@ const RegsiterForm = props => {
             <DivClose onClick={() => history.push('/home')}>
                 <Image src={require("../assets/close.png")} width={20} height={20}/>
             </DivClose>
-            <Formulaire onSubmit={handleClick}>
-                <div>
-                    <LabelForm label="ADRESSE MAIL"/><RedStar/>
-                    <InputForm type="text" name="email" onChange={handleChange}/><br/>
-                    <LabelForm label="PRENOM"/><RedStar/>
-                    <InputForm type="text" name="firstname" onChange={handleChange}/><br/>
-                    <LabelForm label="NOM"/><RedStar/>
-                    <InputForm type="text" name="lastname" onChange={handleChange}/><br/>
-                    <LabelForm label="MOT DE PASSE"/><RedStar/>
-                    <InputForm type="password" name="password" onChange={handleChange}/><br/>
-                    <LabelForm label="CONFIRMATION"/><RedStar/>
-                    <InputForm type="password" name="passwordConfirm" onChange={handleChange}/><br/>
-                </div>
-                <Button>INSCRIPTION</Button>
-            </Formulaire>
+            <Form
+                content={
+                    <>
+                        <div>
+                            <LabelForm label="ADRESSE MAIL"/><RedStar/>
+                            <InputForm type="text" name="email" onChange={handleChange}/><br/>
+                            <LabelForm label="PRENOM"/><RedStar/>
+                            <InputForm type="text" name="firstname" onChange={handleChange}/><br/>
+                            <LabelForm label="NOM"/><RedStar/>
+                            <InputForm type="text" name="lastname" onChange={handleChange}/><br/>
+                            <LabelForm label="MOT DE PASSE"/><RedStar/>
+                            <InputForm type="password" name="password" onChange={handleChange}/><br/>
+                            <LabelForm label="CONFIRMATION"/><RedStar/>
+                            <InputForm type="password" name="passwordConfirm" onChange={handleChange}/><br/>
+                        </div>
+                        <ButtonForm value="INSCRIPTION"/>
+                    </>
+                }
+                onSubmit={handleClick}
+            />
         </DivInscription>
     )
 }

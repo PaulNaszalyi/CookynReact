@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import LoginForm from "../components/loginForm"
 import RegsiterForm from "../components/registerForm"
 import Background from '../assets/background.jpg'
+//---TRANSLATION
+import i18next from 'i18next'
+import {withTranslation} from 'react-i18next'
+//
 
 const Content = styled.div`
   height: 100vh;
@@ -32,8 +36,7 @@ const Button = styled.button`
   width: 50%;
   height: 50px;
   border: none;
-  border-top: 1px solid #fff;
-  background-color: ${prop => prop.connexion ? 'transparent' : '#fff'};
+  background-color: ${prop => prop.connexion ? '#b21f66' : '#fff'};
   color: ${prop => prop.connexion ? '#fff' : '#b21f66'};
   font-family: 'Sen', sans-serif;
   font-weight: bold;
@@ -47,12 +50,17 @@ const Button = styled.button`
   }
 `
 
-const Login = () => {
+const Login = ({t}) => {
     const [display, setDisplay] = useState(0)
     return (
         <Content>
             {display === 0 ?
                 <DivButtons>
+                    <p>{t('login')}</p>
+                    <div>
+                        <button onClick={() => i18next.changeLanguage('fr')}>FR</button>
+                        <button onClick={() => i18next.changeLanguage('en')}>EN</button>
+                    </div>
                     <Button connexion={true} onClick={() => setDisplay(1)}>CONNEXION</Button>
                     <Button connexion={false} onClick={() => setDisplay(2)}>INSCRIPTION</Button>
                 </DivButtons> : null}
@@ -63,4 +71,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default withTranslation()(Login)

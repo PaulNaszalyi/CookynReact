@@ -4,15 +4,18 @@ import Routes from './config/routes'
 import {ThemeProvider} from 'styled-components'
 
 import {Provider} from 'react-redux'
-import {store} from './config/store'
+import {PersistGate} from "redux-persist/es/integration/react"
+import {store, persistor} from './config/store'
 import theme from './config/theme'
 
 function App() {
     return (
         <Provider store={store}>
-            <ThemeProvider theme={theme}>
-                <Routes/>
-            </ThemeProvider>
+            <PersistGate persistor={persistor} loading={""}>
+                <ThemeProvider theme={theme}>
+                    <Routes/>
+                </ThemeProvider>
+            </PersistGate>
         </Provider>
     );
 }

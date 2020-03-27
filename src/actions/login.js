@@ -5,19 +5,8 @@ export const LOGIN = 'LOGIN'
 export const REGISTER = 'REGISTER'
 
 
-export const login = data => ({
-    type: LOGIN,
-    data
-})
-
-export const register = data => ({
-    type: REGISTER,
-    data
-})
-
-
-export const callLogin = (data) => dispatch => {
-    return axios.post(`${ENV.API}/auth/login`, data)
+export const login = data => dispatch => {
+    const query = axios.post(`${ENV.API}/auth/login`, data)
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
@@ -34,10 +23,16 @@ export const callLogin = (data) => dispatch => {
         .catch(err => {
             console.log(err)
         })
+    return {
+        type: LOGIN,
+        data,
+        query
+    }
+
 }
 
-export const callRegister = (dataUser) => dispatch => {
-    return axios.post(`${ENV.API}/user`, dataUser)
+export const register = data => dispatch => {
+    const query = axios.post(`${ENV.API}/user`, data)
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
@@ -53,4 +48,9 @@ export const callRegister = (dataUser) => dispatch => {
         .catch(err => {
             console.log(err)
         })
+    return {
+        type: REGISTER,
+        data,
+        query
+    }
 }
