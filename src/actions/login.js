@@ -22,8 +22,7 @@ export const callLogin = (data) => dispatch => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
                 return false
-            }
-            else {
+            } else {
                 localStorage.setItem('email', res.data.email)
                 localStorage.setItem('idUser', res.data.idUser)
                 localStorage.setItem('firstname', res.data.firstname)
@@ -40,12 +39,10 @@ export const callLogin = (data) => dispatch => {
 export const callRegister = (dataUser) => dispatch => {
     return axios.post(`${ENV.API}/user`, dataUser)
         .then(res => {
-            console.log(res)
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
                 return false
-            }
-            else {
+            } else {
                 localStorage.setItem('email', res.data.email)
                 localStorage.setItem('firstname', res.data.firstname)
                 localStorage.setItem('lastname', res.data.lastname)

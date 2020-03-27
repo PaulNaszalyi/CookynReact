@@ -51,10 +51,11 @@ const Login = () => {
     const [display, setDisplay] = useState(0)
     return (
         <Content>
-            {display === 0 ? <DivButtons>
-                <Button connexion={true} onClick={() => setDisplay(1)}>CONNEXION</Button>
-                <Button connexion={false} onClick={() => setDisplay(2)}>INSCRIPTION</Button>
-            </DivButtons> : null}
+            {display === 0 ?
+                <DivButtons>
+                    <Button connexion={true} onClick={() => setDisplay(1)}>CONNEXION</Button>
+                    <Button connexion={false} onClick={() => setDisplay(2)}>INSCRIPTION</Button>
+                </DivButtons> : null}
 
             {display === 1 ? <LoginForm/> : null}
             {display === 2 ? <RegsiterForm/> : null}

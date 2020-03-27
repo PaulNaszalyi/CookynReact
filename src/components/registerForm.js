@@ -71,7 +71,7 @@ const RegsiterForm = props => {
         setData({...data, [event.target.name]: event.target.value})
     }
 
-    const handleClick = event => {
+    const handleClick = async event => {
         event.preventDefault()
         //On vérifie d'abord les 2 mots de passe
         if (data.password === data.passwordConfirm) {
@@ -82,7 +82,7 @@ const RegsiterForm = props => {
                 lastname: data.lastname,
                 password: data.password
             }
-            if(props.actions.login.callRegister(dataUser)) window.location.reload()
+            if(await props.actions.login.callRegister(dataUser)) window.location.reload()
         } else alert('Les mots de passe sont différents')
 
     }
