@@ -25,7 +25,7 @@ const GetRecipes = (props) => {
             setData(await props.actions.recipe.callFetchRecipes(keyword))
         }
         getRecipes()
-    }, [keyword])
+    }, [keyword, props.actions.recipe])
 
     return (
         <div>

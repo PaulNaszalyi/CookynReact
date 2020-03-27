@@ -6,6 +6,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import allTheActions from '../actions'
 import TitleH2 from "../components/titleH2";
+import BigText from "../components/bigText";
 //---
 
 const Favorites = props => {
@@ -19,25 +20,27 @@ const Favorites = props => {
         fetchFavoritesByUser()
     }, [props.actions.favorite])
 
-    let recipe = []
-
     useEffect(() => {
-        if (favorites.length >= 1)
+        if (favorites !== undefined && favorites.length > 0) {
+            let recipeIds = []
+
             favorites.forEach(async fav => {
-                const fetchRecipe = async () => {
-                    recipe.push(await props.actions.recipe.callGetRecipe(fav.idRecette))
-                    await setRecipes(recipe)
-                }
-                fetchRecipe()
+                recipeIds.push(fav.idRecette)
             })
+
+            const fetchRecipe = async () => {
+                await setRecipes(await props.actions.recipe.callFetchRecipesByFavorites(recipeIds))
+            }
+            fetchRecipe()
+        }
     }, [favorites, props.actions.recipe])
 
     return (
         <div>
             <NavBar/>
             <TitleH2 title="Tous vos favoris"/>
-            {console.log(recipes)}
-            {
+            {recipes.length === 0 ?
+                <BigText content="Aucun favoris"/> :
                 recipes.map(recipe => {
                     return <ItemListRecipe
                         key={recipe._id}

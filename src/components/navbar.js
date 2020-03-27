@@ -7,8 +7,8 @@ import Logout from "./logout"
 const StyledNavBar = styled.div`
     position: fixed;
     width: 100%;
-    height: 60px;
-    background-color: #b21f66;
+    height: 9vh;
+    background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
     left: 0;
     top: 0;
     display: flex;

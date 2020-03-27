@@ -1,4 +1,5 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
+import {useHistory} from "react-router"
 import InputForm from "./inputForm"
 import TextareaForm from "./textareaForm"
 import LabelForm from "./labelForm"
@@ -7,10 +8,13 @@ import RedStar from "./redStar"
 import StyledParagraph from "./styledParagraph"
 import Plus from '../assets/addStep.png'
 import styled from "styled-components"
-import axios from "axios";
 import Swal from 'sweetalert2'
 import Image from "./image"
-import ENV from '../config/env'
+//---REDUX
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import allTheActions from '../actions'
+//---
 
 const BottomFixed = styled.div`
   position: fixed;
@@ -23,7 +27,7 @@ const AlignCenter = styled.div`
   text-align: center;
 `
 
-const RecipeForm = () => {
+const RecipeForm = props => {
     const addStep = () => {
         const newStep = {
             label: `Etape ${steps.length + 1}`,
@@ -37,29 +41,9 @@ const RecipeForm = () => {
     const [steps, setSteps] = useState(FirstStep)
     const [data, setData] = useState({})
     const [file, setFile] = useState(null)
-    const [valid, setValid] = useState(false)
+    const [valid, setValid] = useState(0)
 
-    const postRecipe = async data => {
-        await axios.post(`${ENV.API}/recette`, data)
-            .then(res => {
-                if (res.data.errmsg) alert(res.data.errmsg)
-                else setValid(true)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
-    const postPhoto = async file => {
-        await axios.post(`${ENV.API}/photo`, file)
-            .then(res => { // then print response status
-                if (res.data.errmsg) alert(res.data.errmsg)
-                else setValid(true)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
+    const history = useHistory()
 
     const handleChangeStep = event => {
         const iterator = parseInt(event.target.name.substring(4)) - 1
@@ -76,27 +60,32 @@ const RecipeForm = () => {
         setData({...data, photo: event.target.files[0].name})
     }
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault()
         if (file === null || file === "" || !file)
             alert("Vous n'avez indiqué aucune photo")
         else {
             data.idUser = localStorage.getItem('idUser')
-            postRecipe(data)
+            console.log(props.actions.recipe.callCreateRecipe(data))
+            setValid(await valid + props.actions.recipe.callCreateRecipe(data))
 
             const fileData = new FormData()
             fileData.append('file', file)
-            postPhoto(fileData)
-
-            if (valid)
-                Swal.fire(
-                    'Bravo !',
-                    'Création de la recette réussie !',
-                    'success'
-                )
-            else console.log(valid)
+            setValid(await valid + props.actions.recipe.postPhoto(fileData))
         }
     }
+
+    useEffect(() => {
+        if (valid === 2) {
+            Swal.fire(
+                'Bravo !',
+                'Création de la recette réussie !',
+                'success'
+            ).then(() => {
+                history.push('/home')
+            })
+        }
+    }, [valid, history])
 
     return (
         <div>
@@ -141,4 +130,18 @@ const RecipeForm = () => {
     )
 }
 
-export default RecipeForm
+
+
+const mapStateToProps = state => ({
+    favoriteState: state.favorite,
+    recipeState: state.recipe
+})
+
+const mapDispatchToProps = () => dispatch => ({
+    actions: {
+        favorite: bindActionCreators(allTheActions.favorite, dispatch),
+        recipe: bindActionCreators(allTheActions.recipe, dispatch)
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeForm)

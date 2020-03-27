@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const Button = styled.button`
   width: 100%;
   height: 35px;
-  background-color: #b21f66;
-  border: 1px solid #b21f66;
+  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
+  border: 1px solid ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
   color: #fff;
   font-family: 'Sen', sans-serif;
   font-weight: bold;
@@ -16,7 +16,7 @@ const Button = styled.button`
   
   :hover {
     background-color: transparent;
-    color: #b21f66;
+    color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
     cursor: pointer;
   }
 `

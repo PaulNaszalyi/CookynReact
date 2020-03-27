@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledInput = styled.textarea`
-  border: 1px solid #b21f66;
+  border: 1px solid ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
   width: 100%;
   margin-bottom: 15px;
   outline: none;

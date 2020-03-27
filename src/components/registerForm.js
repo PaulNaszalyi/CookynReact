@@ -1,37 +1,69 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
-import axios from 'axios'
-import Title from './titleH2'
-import ButtonForm from "./buttonForm"
 import RedStar from "./redStar"
-import ENV from "../config/env"
-
-const StyledInput = styled.input`
-  border: 1px solid #b21f66;
-  height: 35px;
-  width: 100%;
-  margin-bottom: 15px;
-  outline: none;
-  padding: 10px;
-  box-sizing: border-box;
-  font-family: 'Sen', sans-serif;
-`
+import Image from "./image";
+import InputForm from "./inputForm"
+import LabelForm from "./labelForm"
+import Background from '../assets/background2.jpg'
+//---REDUX
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import allTheActions from '../actions'
+//---
 
 const Formulaire = styled.form`
+  width: 75vw;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  padding-top: 25px;
 `
 
 const DivInscription = styled.div`
-  width: 85%;
+  width: 100%;
+  height: 100vh;
   max-width: 350px;
   margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(${Background});
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `
 
-const LabelInput = styled.label`
-  font-size: 90%;
+const DivClose = styled.div`
+  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
+  box-shadow: 0px 0px 5px 0px rgba(138,29,82,1);
+  border-radius: 100px;
+  margin-top: 20px;
+  padding: 20px 22px;
 `
 
-const RegsiterForm = () => {
+const Button = styled.button`
+  width: 50%;
+  height: 50px;
+  margin: 15px auto;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  font-family: 'Sen', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  outline: none;
+  transition: 0.3s;
+`
+
+const RegsiterForm = props => {
     const [data, setData] = useState({})
     const history = useHistory()
 
@@ -50,42 +82,43 @@ const RegsiterForm = () => {
                 lastname: data.lastname,
                 password: data.password
             }
-            axios.post(`${ENV.API}/user`, dataUser)
-                .then(res => {
-                    localStorage.setItem('email', res.data.email)
-                    localStorage.setItem('firstname', res.data.firstname)
-                    localStorage.setItem('lastname', res.data.lastname)
-                    localStorage.setItem('token', res.data.token)
-
-                    console.log(res)
-
-                    history.push('/home')
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            if(props.actions.login.callRegister(dataUser)) window.location.reload()
         } else alert('Les mots de passe sont différents')
 
     }
 
     return (
         <DivInscription>
-            <Title title={"INSCRIPTION"}/>
+            <DivClose onClick={() => history.push('/home')}>
+                <Image src={require("../assets/close.png")} width={20} height={20}/>
+            </DivClose>
             <Formulaire onSubmit={handleClick}>
-                <LabelInput>Adresse mail</LabelInput><RedStar/><br/>
-                <StyledInput type="text" name="email" onChange={handleChange} required/><br/>
-                <LabelInput>Prénom</LabelInput><RedStar/><br/>
-                <StyledInput type="text" name="firstname" onChange={handleChange} required/><br/>
-                <LabelInput>Nom</LabelInput><RedStar/><br/>
-                <StyledInput type="text" name="lastname" onChange={handleChange} required/><br/>
-                <LabelInput>Mot de passe</LabelInput><RedStar/><br/>
-                <StyledInput type="password" name="password" onChange={handleChange} required/><br/>
-                <LabelInput>Confirmer le mot de passe</LabelInput><RedStar/><br/>
-                <StyledInput type="password" name="passwordConfirm" onChange={handleChange} required/><br/>
-                <ButtonForm/>
+                <div>
+                    <LabelForm label="ADRESSE MAIL"/><RedStar/>
+                    <InputForm type="text" name="email" onChange={handleChange}/><br/>
+                    <LabelForm label="PRENOM"/><RedStar/>
+                    <InputForm type="text" name="firstname" onChange={handleChange}/><br/>
+                    <LabelForm label="NOM"/><RedStar/>
+                    <InputForm type="text" name="lastname" onChange={handleChange}/><br/>
+                    <LabelForm label="MOT DE PASSE"/><RedStar/>
+                    <InputForm type="password" name="password" onChange={handleChange}/><br/>
+                    <LabelForm label="CONFIRMATION"/><RedStar/>
+                    <InputForm type="password" name="passwordConfirm" onChange={handleChange}/><br/>
+                </div>
+                <Button>INSCRIPTION</Button>
             </Formulaire>
         </DivInscription>
     )
 }
 
-export default RegsiterForm
+const mapStateToProps = state => ({
+    loginState: state.login
+})
+
+const mapDispatchToProps = () => dispatch => ({
+    actions: {
+        login: bindActionCreators(allTheActions.login, dispatch)
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegsiterForm)
