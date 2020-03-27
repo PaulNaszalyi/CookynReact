@@ -15,10 +15,8 @@ const GetRecipes = (props) => {
         setKeyword(await value)
     }
 
-    if (props.keyword === "")
-        settingKeyword("*")
-    else if (props.keyword !== "*")
-        settingKeyword(props.keyword)
+
+    settingKeyword(props.keyword)
 
     useEffect(() => {
         const getRecipes = async () => {
