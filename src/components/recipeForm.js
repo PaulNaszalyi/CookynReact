@@ -6,7 +6,8 @@ import LabelForm from "./labelForm"
 import ButtonForm from "./buttonForm"
 import RedStar from "./redStar"
 import StyledParagraph from "./styledParagraph"
-import Plus from '../assets/addStep.png'
+import PlusLightTheme from '../assets/addStepLightTheme.png'
+import PlusDarkTheme from '../assets/addStepDarkTheme.png'
 import styled from "styled-components"
 import Swal from 'sweetalert2'
 import Image from "./image"
@@ -21,6 +22,8 @@ const BottomFixed = styled.div`
   bottom: 0;
   left: 0;
   width: 100vw;
+  color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
+  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.clearGrey : '#fff'};
 `
 
 const AlignCenter = styled.div`
@@ -35,7 +38,7 @@ const RecipeForm = props => {
         }
         setSteps([...steps, newStep])
     }
-
+    
     const FirstStep = [{label: "Etape 1", inputName: "step1", value: ""}]
 
     const [steps, setSteps] = useState(FirstStep)
@@ -116,7 +119,7 @@ const RecipeForm = props => {
                 )}
 
                 <AlignCenter>
-                    <Image src={Plus} width={35} height={35} alt="Ajouter un étape" onClick={addStep}/>
+                    <Image src={localStorage.getItem('theme') === 'dark' ? PlusDarkTheme : PlusLightTheme} width={35} height={35} alt="Ajouter un étape" onClick={addStep}/>
                 </AlignCenter>
 
                 <LabelForm label="Ajouter une photo"/><RedStar/>

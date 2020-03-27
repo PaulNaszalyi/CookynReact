@@ -5,8 +5,9 @@ import {useHistory} from 'react-router-dom'
 const DivContent = styled.div`
   margin: 15px;
   display: flex;
-  background-color: #fff;
-  box-shadow: 0px 0px 5px 0px rgba(199,199,199,1);
+  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.clearGrey : '#fff'};
+  color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
+  box-shadow: 0px 0px 5px 0px ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.borderGrey : props.theme.lightTheme.borderGrey};  
 `
 
 const DivImage = styled.div`

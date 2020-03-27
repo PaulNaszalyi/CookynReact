@@ -6,8 +6,9 @@ const DivDescription = styled.div`
   box-sizing: border-box;
   padding: 25px;
   padding-bottom: 45px;
-  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.grey : '#fff'};
-  box-shadow: 0px 0px 5px 0px rgba(199,199,199,1);
+  color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
+  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.clearGrey : '#fff'};
+  box-shadow: 0px 0px 5px 0px ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.borderGrey : props.theme.lightTheme.borderGrey};
 `
 
 const DivWhiteBoxShadow = ({content = ""}) => {
