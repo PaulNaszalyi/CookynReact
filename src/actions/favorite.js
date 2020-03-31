@@ -8,7 +8,7 @@ export const GET_FAVORITE_BY_USER = 'GET_FAVORITE_BY_USER'
 
 
 export const addFavorite = data => async dispatch => {
-    const query = axios.post(`${ENV.API}/favoris`, data)
+    const payload = axios.post(`${ENV.API}/favoris`, data)
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
@@ -20,13 +20,12 @@ export const addFavorite = data => async dispatch => {
         })
     return {
         type: ADD_FAVORITE,
-        data,
-        query
+        payload
     }
 }
 
 export const removeFavorite = data => async dispatch => {
-    const query = axios.delete(`${ENV.API}/favoris`, {data: data})
+    const payload = axios.delete(`${ENV.API}/favoris`, {data: data})
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
@@ -39,13 +38,12 @@ export const removeFavorite = data => async dispatch => {
 
     return {
         type: REMOVE_FAVORITE,
-        data,
-        query
+        payload
     }
 }
 
 export const getFavorite = data => dispatch => {
-    const query = axios.post(`${ENV.API}/getfavoris`, data)
+    const payload = axios.post(`${ENV.API}/getfavoris`, data)
         .then(res => {
             if (res.data.errmsg) alert(res.data.errmsg)
             else return res.data.found
@@ -55,13 +53,12 @@ export const getFavorite = data => dispatch => {
         })
     return {
         type: GET_FAVORITE,
-        data,
-        query
+        payload
     }
 }
 
 export const getFavoritesByUser = data => dispatch => {
-    const query = axios.get(`${ENV.API}/getfavorisbyuser/${data}`)
+    const payload = axios.get(`${ENV.API}/getfavorisbyuser/${data}`)
         .then(res => {
             if (res.data.errmsg) alert(res.data.errmsg)
             else return res.data
@@ -71,7 +68,6 @@ export const getFavoritesByUser = data => dispatch => {
         })
     return {
         type: GET_FAVORITE_BY_USER,
-        data,
-        query
+        payload
     }
 }

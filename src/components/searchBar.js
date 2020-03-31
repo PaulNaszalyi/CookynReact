@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
-  padding: 15px;
-  padding-top: 0;
   margin-top: 15px;
+  margin-bottom: 25px;
 `
 
 const StyledInput = styled.input`
@@ -17,13 +16,21 @@ const StyledInput = styled.input`
   padding: 10px;
   box-sizing: border-box;
   font-family: 'Sen', sans-serif;
+  
+  ::placeholder {
+    color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
+  }
 `
 
 const SearchBar = ({
-    onChange = null,
-    placeholder = ""
-}) => {
-    return <StyledDiv><StyledInput type='text' name='searchBar' onChange={onChange} placeholder={placeholder}/></StyledDiv>
+                       onChange = null,
+                       placeholder = ""
+                   }) => {
+    return (
+        <StyledDiv>
+            <StyledInput type='text' name='searchBar' onChange={onChange} placeholder={placeholder}/>
+        </StyledDiv>
+    )
 }
 
 export default SearchBar

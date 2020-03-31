@@ -24,6 +24,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="P:\Programmes\JetBrains\WebStorm 2018.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PoloRelou\Documents\CookynReact\src\screens" />
+    </key>
+  </component>
   <component name="StructuralSearchPlugin">
     <searchConfiguration name="user defined" created="1585224022298" text="localhost" recursive="true" caseInsensitive="true" type="XML" scope_type="PROJECT" scope_descriptor="" history="1">
       <constraint name="__context__" within="" contains="" />
@@ -49,7 +54,11 @@
       <workItem from="1585220268353" duration="16946000" />
       <workItem from="1585244673855" duration="6315000" />
       <workItem from="1585252662819" duration="12716000" />
-      <workItem from="1585297861687" duration="16796000" />
+      <workItem from="1585297861687" duration="28298000" />
+      <workItem from="1585396573629" duration="12213000" />
+      <workItem from="1585584829368" duration="57000" />
+      <workItem from="1585584941483" duration="956000" />
+      <workItem from="1585585910022" duration="8692000" />
     </task>
     <servers />
   </component>
@@ -61,34 +70,34 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="573" y="326" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1040@0.0.2560.1040" timestamp="1584723718479" />
-    <state x="529" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584711706347">
+    <state x="529" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585588699451">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="529" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1584711706347" />
+    <state x="529" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1585588699451" />
     <state x="366" y="351" width="943" height="345" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog" timestamp="1585224022288">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="366" y="351" width="943" height="345" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1585224022288" />
-    <state x="481" y="278" key="FileChooserDialogImpl" timestamp="1585302829234">
+    <state x="481" y="278" key="FileChooserDialogImpl" timestamp="1585602939255">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="481" y="278" key="FileChooserDialogImpl/0.0.2560.1040@0.0.2560.1040" timestamp="1585302829234" />
-    <state width="1378" height="117" key="GridCell.Tab.0.bottom" timestamp="1584609718643">
+    <state x="481" y="278" key="FileChooserDialogImpl/0.0.2560.1040@0.0.2560.1040" timestamp="1585602939255" />
+    <state width="1537" height="117" key="GridCell.Tab.0.bottom" timestamp="1585586294494">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1378" height="117" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1584609718643" />
-    <state width="1378" height="117" key="GridCell.Tab.0.center" timestamp="1584609718643">
+    <state width="1537" height="117" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1585586294494" />
+    <state width="1537" height="117" key="GridCell.Tab.0.center" timestamp="1585586294494">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1378" height="117" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1584609718643" />
-    <state width="1378" height="117" key="GridCell.Tab.0.left" timestamp="1584609718643">
+    <state width="1537" height="117" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1585586294494" />
+    <state width="1537" height="117" key="GridCell.Tab.0.left" timestamp="1585586294494">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1378" height="117" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1584609718643" />
-    <state width="1378" height="117" key="GridCell.Tab.0.right" timestamp="1584609718643">
+    <state width="1537" height="117" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1585586294494" />
+    <state width="1537" height="117" key="GridCell.Tab.0.right" timestamp="1585586294494">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1378" height="117" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1584609718643" />
+    <state width="1537" height="117" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1585586294494" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1585262736277">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

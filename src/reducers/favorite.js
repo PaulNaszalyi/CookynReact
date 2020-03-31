@@ -4,28 +4,28 @@ const initialState = {
     favorite: []
 }
 
+
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_FAVORITE:
             return {
                 ...state,
-                favorite: [{...state}, action.data]
+                favorite: [{...state}, action.payload]
             }
         case REMOVE_FAVORITE:
             return {
                 ...state,
-                favorite: [{...state}, action.data]
+                favorite: [{...state}, action.payload]
             }
         case GET_FAVORITE:
             return {
                 ...state,
-                favorite: [{...state}, action.data]
+                favorite: [{...state}, action.payload]
             }
         case GET_FAVORITE_BY_USER:
-            alert(action.payload)
             return {
                 ...state,
-                favorite: [{...state}, action.data]
+                favorite: [{...state}, action.payload]
             }
         default:
             return state

@@ -3,7 +3,8 @@ import styled from "styled-components"
 
 const BigTitle = styled.h1`
   text-align: center;
-  margin: 15px;
+  margin: 15px 0;
+  margin-bottom: 20px;
   color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
 `
 

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import {useHistory} from 'react-router-dom'
 
 const DivContent = styled.div`
-  margin: 15px;
+  margin: 15px 0;
   display: flex;
   background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.clearGrey : '#fff'};
   color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};

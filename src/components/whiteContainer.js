@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Content = styled.div`
-  width: 80vw;
   margin: auto;
   padding: 15px;
   background-color: #fff;

@@ -3,14 +3,14 @@ import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import reducers from '../reducers'
 import thunk from "redux-thunk"
-import logger from 'redux-logger'
+//import logger from 'redux-logger'
 
 const persistConfig = {
     key: 'cookyn',
     storage: storage,
-    whitelist: ['favorite', 'recipe', 'login'] // On indique au reducer ce qu'on souhaite stocker
+    whitelist: ['cookyn']
 }
 const pReducer = persistReducer(persistConfig, reducers)
-const store = createStore(pReducer, applyMiddleware(logger, thunk))
+const store = createStore(pReducer, applyMiddleware(thunk))
 const persistor = persistStore(store)
 export {persistor, store}

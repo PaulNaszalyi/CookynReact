@@ -8,14 +8,20 @@ import allTheActions from '../actions'
 import TitleH2 from "../components/titleH2";
 import BigText from "../components/bigText";
 //---
+//---TRANSLATION
+import {withTranslation} from 'react-i18next'
+//
 
 const Favorites = props => {
+
+    //console.log(props)
+
     const [favorites, setFavorites] = useState([])
     const [recipes, setRecipes] = useState([])
 
     useEffect(() => {
         const fetchFavoritesByUser = async () => {
-            setFavorites(await props.actions.favorite.getFavoritesByUser(await localStorage.getItem('idUser')).query)
+            setFavorites(await props.actions.favorite.getFavoritesByUser(await localStorage.getItem('idUser')).payload)
         }
         fetchFavoritesByUser()
     }, [props.actions.favorite])
@@ -32,7 +38,7 @@ const Favorites = props => {
     return (
         <div>
             <NavBar/>
-            <TitleH2 title="Tous vos favoris"/>
+            <TitleH2 title={props.t('favorites.allFavorites')}/>
             {recipes.length === 0 ?
                 <BigText content="Aucun favoris"/> :
                 recipes.map(recipe => {
@@ -61,4 +67,4 @@ const mapDispatchToProps = () => dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites)
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Favorites))

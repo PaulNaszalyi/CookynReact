@@ -10,14 +10,15 @@ import Home from "../screens/home"
 import CreateRecipe from "../screens/createRecipe"
 import ViewRecipe from "../screens/viewRecipe"
 import Favorites from "../screens/favorites"
+import Settings from "../screens/settings"
 import styled from "styled-components"
 
 const Container = styled.div`
+  padding: 15px;
   padding-top: 11vh;
-  padding-bottom: 15px;
-  height: 100%;
-  min-height: 90vh;
+  min-height: 100vh;
   background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.grey : props.theme.lightTheme.grey};
+  box-sizing: border-box;
 `
 
 const Routing = (...props) => {
@@ -25,10 +26,8 @@ const Routing = (...props) => {
 
     const PublicRoute = ({component: Component, ...props}) => {
         return (
-            <Container>
-                <Route {...props}
-                       render={innerProps => token ? <Redirect to='/home'/> : <Component {...innerProps} />}/>
-            </Container>
+            <Route {...props}
+                   render={innerProps => token ? <Redirect to='/home'/> : <Component {...innerProps} />}/>
         )
     }
 
@@ -48,6 +47,7 @@ const Routing = (...props) => {
                 <PrivateRoute exact {...props} path='/create-recipe' component={CreateRecipe}/>
                 <PrivateRoute exact {...props} path='/view-recipe/:id' component={ViewRecipe}/>
                 <PrivateRoute exact {...props} path='/favorites' component={Favorites}/>
+                <PrivateRoute exact {...props} path='/settings' component={Settings}/>
             </Switch>
         </Router>
     )

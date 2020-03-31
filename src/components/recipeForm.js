@@ -16,15 +16,9 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import allTheActions from '../actions'
 //---
-
-const BottomFixed = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
-  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.clearGrey : '#fff'};
-`
+//---TRANSLATION
+import {withTranslation} from 'react-i18next'
+//
 
 const AlignCenter = styled.div`
   text-align: center;
@@ -33,13 +27,13 @@ const AlignCenter = styled.div`
 const RecipeForm = props => {
     const addStep = () => {
         const newStep = {
-            label: `Etape ${steps.length + 1}`,
+            label: `${props.t('newRecipe.step')} ${steps.length + 1}`,
             inputName: `step${steps.length + 1}`
         }
         setSteps([...steps, newStep])
     }
-    
-    const FirstStep = [{label: "Etape 1", inputName: "step1", value: ""}]
+
+    const FirstStep = [{label: `${props.t('newRecipe.step')} 1`, inputName: "step1", value: ""}]
 
     const [steps, setSteps] = useState(FirstStep)
     const [data, setData] = useState({})
@@ -69,8 +63,7 @@ const RecipeForm = props => {
             alert("Vous n'avez indiqué aucune photo")
         else {
             data.idUser = localStorage.getItem('idUser')
-            console.log(props.actions.recipe.callCreateRecipe(data))
-            setValid(await valid + props.actions.recipe.callCreateRecipe(data))
+            setValid(await valid + props.actions.recipe.createRecipe(data).query)
 
             const fileData = new FormData()
             fileData.append('file', file)
@@ -91,21 +84,20 @@ const RecipeForm = props => {
     }, [valid, history])
 
     return (
-        <div>
+        <>
             <StyledParagraph
-                content={"Remplis ce formulaire avec toutes les informations pour créer une nouvelle recette. " +
-                "Tu pourras également parcourir tes fichiers et ajouter une image !"}
+                content={props.t('newRecipe.info')}
                 marginTop={50}
             />
             <br/>
             <form onSubmit={handleSubmit}>
-                <LabelForm label="Nom de la recette"/><RedStar/>
+                <LabelForm label={props.t('newRecipe.name')}/><RedStar/>
                 <InputForm name="name" onChange={handleChange}/>
 
-                <LabelForm label="Description"/><RedStar/>
+                <LabelForm label={props.t('newRecipe.description')}/><RedStar/>
                 <TextareaForm name="description" onChange={handleChange}/>
 
-                <LabelForm label="Ingrédients"/><RedStar/>
+                <LabelForm label={props.t('newRecipe.ingredients')}/><RedStar/>
                 <TextareaForm name="ingredients" onChange={handleChange}/>
 
                 {steps.map(input => {
@@ -119,20 +111,18 @@ const RecipeForm = props => {
                 )}
 
                 <AlignCenter>
-                    <Image src={localStorage.getItem('theme') === 'dark' ? PlusDarkTheme : PlusLightTheme} width={35} height={35} alt="Ajouter un étape" onClick={addStep}/>
+                    <Image src={localStorage.getItem('theme') === 'dark' ? PlusDarkTheme : PlusLightTheme} width={35}
+                           height={35} alt="Ajouter un étape" onClick={addStep}/>
                 </AlignCenter>
 
-                <LabelForm label="Ajouter une photo"/><RedStar/>
+                <LabelForm label={props.t('newRecipe.photo')}/><RedStar/>
                 <InputForm onChange={handleChangeFile} name="file" type="file"/>
 
-                <BottomFixed>
-                    <ButtonForm value="Créer la recette"/>
-                </BottomFixed>
+                <ButtonForm value={props.t('newRecipe.button')}/>
             </form>
-        </div>
+        </>
     )
 }
-
 
 
 const mapStateToProps = state => ({
@@ -147,4 +137,4 @@ const mapDispatchToProps = () => dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeForm)
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(RecipeForm))

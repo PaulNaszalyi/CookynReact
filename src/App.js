@@ -11,7 +11,7 @@ import theme from './config/theme'
 function App() {
     return (
         <Provider store={store}>
-            <PersistGate persistor={persistor} loading={""}>
+            <PersistGate persistor={persistor} loading={null}>
                 <ThemeProvider theme={theme}>
                     <Routes/>
                 </ThemeProvider>

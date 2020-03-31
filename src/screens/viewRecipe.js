@@ -13,6 +13,9 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import allTheActions from '../actions'
 //---
+//---TRANSLATION
+import {withTranslation} from 'react-i18next'
+//
 
 
 const SubTitle = styled.h3`
@@ -28,6 +31,7 @@ const ViewRecipe = props => {
 
     const dataFavorite = {idUser: localStorage.getItem('idUser'), idRecette: idRecipe.id}
 
+    console.log(props.actions.favorite.getFavorite(dataFavorite.idRecette))
 
     useEffect(() => {
         const fetchRecipe = async () => {
@@ -38,7 +42,7 @@ const ViewRecipe = props => {
 
     useEffect(() => {
         const fetchFavorite = async () => {
-            setFavorite(await props.actions.favorite.getFavorite(dataFavorite).query)
+            setFavorite(await props.actions.favorite.getFavorite(dataFavorite).payload)
         }
         fetchFavorite()
     }, [props.actions.favorite, dataFavorite])
@@ -56,24 +60,24 @@ const ViewRecipe = props => {
                         favorite ?
                             <Image
                                 src={RedHeart}
-                                onClick={async () => setFavorite(await props.actions.favorite.removeFavorite(dataFavorite))}
+                                onClick={async () => setFavorite(await props.actions.favorite.removeFavorite(dataFavorite).payload)}
                                 width={25} height={25}
                             />
                             :
                             <Image
                                 src={BlackHeart}
-                                onClick={() => setFavorite(props.actions.favorite.addFavorite(dataFavorite))}
+                                onClick={() => setFavorite(props.actions.favorite.addFavorite(dataFavorite).payload)}
                                 width={25} height={25}
                             />
                     }
 
-                    <SubTitle>Description</SubTitle>
+                    <SubTitle>{props.t('recipe.description')}</SubTitle>
                     {data.description}
 
-                    <SubTitle>Les ingrédients</SubTitle>
+                    <SubTitle>{props.t('recipe.ingredients')}</SubTitle>
                     {data.ingredients}
 
-                    <SubTitle>Les étapes</SubTitle>
+                    <SubTitle>{props.t('recipe.steps')}</SubTitle>
                     <ol>
                         {stepsJSON.map(recipe => {
                             return (<li key={recipe.label}>{recipe.value}<br/><br/></li>)
@@ -98,4 +102,4 @@ const mapDispatchToProps = () => dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewRecipe)
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ViewRecipe))

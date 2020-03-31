@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const DivDescription = styled.div`
-  margin: 15px;
+  margin: 15px 0;
   box-sizing: border-box;
   padding: 25px;
   padding-bottom: 45px;
