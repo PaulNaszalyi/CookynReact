@@ -6,68 +6,66 @@ export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
 export const GET_FAVORITE = 'GET_FAVORITE'
 export const GET_FAVORITE_BY_USER = 'GET_FAVORITE_BY_USER'
 
+const dispatchFavorite = (type, payload) => ({type: type, payload: payload})
 
 export const addFavorite = data => async dispatch => {
-    const payload = axios.post(`${ENV.API}/favoris`, data)
+    return axios.post(`${ENV.API}/favoris`, data)
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
+                dispatch(dispatchFavorite(ADD_FAVORITE, res.data))
                 return false
-            } else return true
+            } else {
+                dispatch(dispatchFavorite(ADD_FAVORITE, res.data))
+                return true
+            }
         })
         .catch(err => {
             alert(err)
         })
-    return {
-        type: ADD_FAVORITE,
-        payload
-    }
 }
 
 export const removeFavorite = data => async dispatch => {
-    const payload = axios.delete(`${ENV.API}/favoris`, {data: data})
+    return axios.delete(`${ENV.API}/favoris`, {data: data})
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
+                dispatch(dispatchFavorite(REMOVE_FAVORITE, res.data))
                 return true
-            } else return false
+            } else {
+                dispatch(dispatchFavorite(REMOVE_FAVORITE, res.data))
+                return false
+            }
         })
         .catch(err => {
             alert(err)
         })
-
-    return {
-        type: REMOVE_FAVORITE,
-        payload
-    }
 }
 
 export const getFavorite = data => dispatch => {
-    const payload = axios.post(`${ENV.API}/getfavoris`, data)
+    return axios.post(`${ENV.API}/getfavoris`, data)
         .then(res => {
             if (res.data.errmsg) alert(res.data.errmsg)
-            else return res.data.found
+            else {
+                dispatch(dispatchFavorite(GET_FAVORITE, res.data.found))
+                return res.data.found
+            }
         })
         .catch(err => {
             alert(err)
         })
-    return {
-        type: GET_FAVORITE,
-        payload
-    }
 }
 
 export const getFavoritesByUser = data => dispatch => {
-    const payload = axios.get(`${ENV.API}/getfavorisbyuser/${data}`)
+    return axios.get(`${ENV.API}/getfavorisbyuser/${data}`)
         .then(res => {
             if (res.data.errmsg) alert(res.data.errmsg)
-            else return res.data
+            else {
+                dispatch(dispatchFavorite(GET_FAVORITE_BY_USER, res.data))
+                return res.data
+            }
         })
         .catch(err => {
             alert(err)
         })
-    return {
-        type: GET_FAVORITE_BY_USER,
-        payload
-    }
 }

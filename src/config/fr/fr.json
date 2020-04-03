@@ -1,37 +1,46 @@
 {
-  "recipe.description": "Description",
-  "recipe.ingredients": "Les ingrédients",
-  "recipe.steps": "Les étapes",
-
-  "home.searchBar": "Rechercher...",
-  "home.lastRecipes": "Les dernières recettes",
-  "home.searchingRes": "Résultat(s) de votre recherche :",
-
-  "newRecipe.create": "Créer une nouvelle recette",
-  "newRecipe.info": "Remplis ce formulaire avec toutes les informations requises pour créer ta recette. N'oublie pas d'ajouter une image !",
-  "newRecipe.name": "Nom de la recette",
-  "newRecipe.description": "Description",
-  "newRecipe.ingredients": "Ingrédients",
-  "newRecipe.step": "Etape",
-  "newRecipe.photo": "Ajouter une photo",
-  "newRecipe.button": "Créer la recette",
-
-  "favorites.allFavorites": "Tous vos favoris",
-
-  "index.welcome": "BIENVENUE SUR",
-  "index.login": "CONNEXION",
-  "index.register": "INSCRIPTION",
-
-  "login.mail": "ADRESSE MAIL",
-  "login.password": "MOT DE PASSE",
-  "login.login": "CONNEXION",
-
-  "register.mail": "ADRESSE MAIL",
-  "register.firstname": "PRENOM",
-  "register.lastname": "NOM",
-  "register.password": "MOT DE PASSE",
-  "register.passwordConfirm": "CONFIRMATION",
-  "register.register": "INSCRIPTION",
-
-  "settings.logout": "Déconnexion"
+  "recipe": {
+    "description": "Description",
+    "ingredients": "Les ingrédients",
+    "steps": "Les étapes"
+  },
+  "home": {
+    "searchBar": "Rechercher...",
+    "lastRecipes": "Les dernières recettes",
+    "searchingRes": "Résultat(s) de votre recherche :"
+  },
+  "newRecipe": {
+    "create": "Créer une nouvelle recette",
+    "info": "Remplis ce formulaire avec toutes les informations requises pour créer ta recette. N'oublie pas d'ajouter une image !",
+    "name": "Nom de la recette",
+    "description": "Description",
+    "ingredients": "Ingrédients",
+    "step": "Etape",
+    "photo": "Ajouter une photo",
+    "button": "Créer la recette"
+  },
+  "favorites": {
+    "allFavorites": "Tous vos favoris"
+  },
+  "index": {
+    "welcome": "BIENVENUE SUR",
+    "login": "CONNEXION",
+    "register": "INSCRIPTION"
+  },
+  "login": {
+    "mail": "ADRESSE MAIL",
+    "password": "MOT DE PASSE",
+    "login": "CONNEXION"
+  },
+  "register": {
+    "mail": "ADRESSE MAIL",
+    "firstname": "PRENOM",
+    "lastname": "NOM",
+    "password": "MOT DE PASSE",
+    "passwordConfirm": "CONFIRMATION",
+    "register": "INSCRIPTION"
+  },
+  "settings": {
+    "logout": "Déconnexion"
+  }
 }

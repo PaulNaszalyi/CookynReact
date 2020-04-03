@@ -8,7 +8,6 @@ import {withTranslation} from 'react-i18next'
 //
 
 const Home = ({t}) => {
-
     const [data, setData] = useState("*")
 
     const handleChange = async event => {

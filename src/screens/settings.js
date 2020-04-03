@@ -43,7 +43,7 @@ const Settings = ({t}) => {
 
     const changeTheme = theme => {
         localStorage.setItem('theme', theme)
-        window.location.reload()
+        //window.location.reload()
     }
 
     const userInfo = {

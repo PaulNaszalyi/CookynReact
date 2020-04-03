@@ -21,7 +21,7 @@ const Favorites = props => {
 
     useEffect(() => {
         const fetchFavoritesByUser = async () => {
-            setFavorites(await props.actions.favorite.getFavoritesByUser(await localStorage.getItem('idUser')).payload)
+            setFavorites(await props.actions.favorite.getFavoritesByUser(await localStorage.getItem('idUser')))
         }
         fetchFavoritesByUser()
     }, [props.actions.favorite])
@@ -29,7 +29,7 @@ const Favorites = props => {
     useEffect(() => {
         if (favorites !== undefined && favorites.length > 0) {
             const fetchRecipe = async () => {
-                setRecipes(await props.actions.recipe.fetchRecipesByFavs(favorites).query)
+                setRecipes(await props.actions.recipe.fetchRecipesByFavs(favorites))
             }
             fetchRecipe()
         }

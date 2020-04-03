@@ -1,32 +1,21 @@
 import {ADD_FAVORITE, GET_FAVORITE, GET_FAVORITE_BY_USER, REMOVE_FAVORITE} from '../actions/favorite'
 
 const initialState = {
-    favorite: []
+    favorite: null
 }
 
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_FAVORITE:
-            return {
-                ...state,
-                favorite: [{...state}, action.payload]
-            }
+            state.favorite.push(action.payload)
+            return { favorite: state.favorite }
         case REMOVE_FAVORITE:
-            return {
-                ...state,
-                favorite: [{...state}, action.payload]
-            }
+            return { favorite: state.favorite.filter(recipe => recipe !== action.payload) }
         case GET_FAVORITE:
-            return {
-                ...state,
-                favorite: [{...state}, action.payload]
-            }
+            return state
         case GET_FAVORITE_BY_USER:
-            return {
-                ...state,
-                favorite: [{...state}, action.payload]
-            }
+            return { favorite: action.payload }
         default:
             return state
     }

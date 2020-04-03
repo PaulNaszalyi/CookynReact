@@ -31,21 +31,20 @@ const ViewRecipe = props => {
 
     const dataFavorite = {idUser: localStorage.getItem('idUser'), idRecette: idRecipe.id}
 
-    console.log(props.actions.favorite.getFavorite(dataFavorite.idRecette))
-
     useEffect(() => {
         const fetchRecipe = async () => {
-            setData(await props.actions.recipe.getRecipe(idRecipe.id).query)
+            setData(await props.actions.recipe.getRecipe(idRecipe.id))
         }
         fetchRecipe()
     }, [props.actions.recipe, idRecipe.id])
 
     useEffect(() => {
+        const fav = {idUser: localStorage.getItem('idUser'), idRecette: idRecipe.id}
         const fetchFavorite = async () => {
-            setFavorite(await props.actions.favorite.getFavorite(dataFavorite).payload)
+            setFavorite(await props.actions.favorite.getFavorite(fav))
         }
         fetchFavorite()
-    }, [props.actions.favorite, dataFavorite])
+    }, [props.actions.favorite, idRecipe.id])
 
     if (data.steps !== undefined) stepsJSON = JSON.parse(data.steps)
 
@@ -60,13 +59,13 @@ const ViewRecipe = props => {
                         favorite ?
                             <Image
                                 src={RedHeart}
-                                onClick={async () => setFavorite(await props.actions.favorite.removeFavorite(dataFavorite).payload)}
+                                onClick={async () => setFavorite(await props.actions.favorite.removeFavorite(dataFavorite))}
                                 width={25} height={25}
                             />
                             :
                             <Image
                                 src={BlackHeart}
-                                onClick={() => setFavorite(props.actions.favorite.addFavorite(dataFavorite).payload)}
+                                onClick={() => setFavorite(props.actions.favorite.addFavorite(dataFavorite))}
                                 width={25} height={25}
                             />
                     }

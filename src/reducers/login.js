@@ -1,7 +1,7 @@
 import {LOGIN, REGISTER} from '../actions/login'
 
 const initialState = {
-    login: {}
+    login: null
 }
 
 export default (state = initialState, action) => {
@@ -9,12 +9,12 @@ export default (state = initialState, action) => {
         case LOGIN:
             return {
                 ...state,
-                login: action.data
+                login: action.payload
             }
         case REGISTER:
             return {
                 ...state,
-                login: action.data
+                login: action.payload
             }
         default:
             return state

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import ItemListRecipe from "./itemListRecipe"
 import BigText from "./bigText"
 //---REDUX
@@ -11,17 +11,19 @@ const GetRecipes = (props) => {
     const [data, setData] = useState([])
     const [keyword, setKeyword] = useState(props.keyword)
 
+    const timeOutRef = useRef(null)
+
     const settingKeyword = async (value) => {
         setKeyword(await value)
     }
-
     settingKeyword(props.keyword)
 
     useEffect(() => {
+        clearTimeout(timeOutRef.current)
         const getRecipes = async () => {
-            setData(await props.actions.recipe.fetchRecipes(keyword).query)
+            setData(await props.actions.recipe.fetchRecipes(keyword))
         }
-        getRecipes()
+        timeOutRef.current = setTimeout(getRecipes, 500)
     }, [keyword, props.actions.recipe])
 
     return (

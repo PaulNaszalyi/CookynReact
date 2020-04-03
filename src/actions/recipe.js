@@ -7,58 +7,48 @@ export const FETCH_RECIPES_FAVS = 'FETCH_RECIPES_FAVS'
 export const CREATE_RECIPE = 'CREATE_RECIPE'
 export const POST_PHOTO = 'POST_PHOTO'
 
+const dispatchRecipe = (type, payload) => ({type: type, payload: payload})
 
 export const getRecipe = data => dispatch => {
-    const query = axios.get(`${ENV.API}/recette/${data}`)
+    return axios.get(`${ENV.API}/recette/${data}`)
         .then(res => {
+            dispatch(dispatchRecipe(GET_RECIPE, res.data))
             return res.data
         })
         .catch(err => {
             console.log(err)
             return err
         })
-    return {
-        type: GET_RECIPE,
-        data,
-        query
-    }
 }
 
 export const fetchRecipes = data => dispatch => {
-    const query = axios.get(`${ENV.API}/findRecettes/${data}`)
+    return axios.get(`${ENV.API}/findRecettes/${data}`)
         .then(res => {
+            dispatch(dispatchRecipe(FETCH_RECIPE, res.data))
             return res.data
         })
         .catch(err => {
             return err
         })
-    return {
-        type: FETCH_RECIPE,
-        data,
-        query
-    }
 }
 
 export const fetchRecipesByFavs = data => dispatch => {
-    const query = axios.post(`${ENV.API}/findRecettes/`, {recipes: data})
+    return axios.post(`${ENV.API}/findRecettes/`, {recipes: data})
         .then(res => {
             if (res.data.errmsg) alert(res.data.errmsg)
             else {
+                dispatch(dispatchRecipe(FETCH_RECIPES_FAVS, res.data))
                 return res.data
             }
         })
         .catch(err => {
             return err
         })
-    return {
-        type: FETCH_RECIPES_FAVS,
-        data,
-        query
-    }
 }
 
 export const createRecipe = data => dispatch => {
-    const query = axios.post(`${ENV.API}/recette`, data)
+    console.log(data)
+    return axios.post(`${ENV.API}/recette`, data)
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
@@ -68,15 +58,10 @@ export const createRecipe = data => dispatch => {
         .catch(err => {
             console.log(err)
         })
-    return {
-        type: CREATE_RECIPE,
-        data,
-        query
-    }
 }
 
 export const postPhoto = file => dispatch => {
-    const query = axios.post(`${ENV.API}/photo`, file)
+    return axios.post(`${ENV.API}/photo`, file)
         .then(res => {
             if (res.data.errmsg) {
                 alert(res.data.errmsg)
@@ -86,9 +71,4 @@ export const postPhoto = file => dispatch => {
         .catch(err => {
             console.log(err)
         })
-    return {
-        type: POST_PHOTO,
-        file,
-        query
-    }
 }

@@ -1,37 +1,46 @@
 {
-  "recipe.description": "Description",
-  "recipe.ingredients": "Ingredients",
-  "recipe.steps": "Steps",
-
-  "home.searchBar": "Write something...",
-  "home.lastRecipes": "Last recipes",
-  "home.searchingRes": "Result(s) of your research :",
-
-  "newRecipe.create": "Create a new recipe",
-  "newRecipe.info": " Fill all required fields of that form to create a new recipe. Don't forget to upload a photo for your recipe !",
-  "newRecipe.name": "Title of the recipe",
-  "newRecipe.description": "Description",
-  "newRecipe.ingredients": "Ingredients",
-  "newRecipe.step": "Step",
-  "newRecipe.photo": "Add a photo",
-  "newRecipe.button": "CREATE RECIPE",
-
-  "favorites.allFavorites": "All your favorites",
-
-  "index.welcome": "WELCOME TO",
-  "index.login": "LOGIN",
-  "index.register": "REGISTER",
-
-  "login.mail": "EMAIL ADDRESS",
-  "login.password": "PASSWORD",
-  "login.login": "LOGIN",
-
-  "register.mail": "EMAIL ADDRESS",
-  "register.firstname": "FIRSTNAME",
-  "register.lastname": "LASTNAME",
-  "register.password": "PASSWORD",
-  "register.passwordConfirm": "CONFIRMATION",
-  "register.register": "REGISTER",
-
-  "settings.logout": "Logout"
+  "recipe": {
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "steps": "Steps"
+  },
+  "home": {
+    "searchBar": "Write something...",
+    "lastRecipes": "Last recipes",
+    "searchingRes": "Result(s) of your research :"
+  },
+  "newRecipe": {
+    "create": "Create a new recipe",
+    "info": " Fill all required fields of that form to create a new recipe. Don't forget to upload a photo for your recipe !",
+    "name": "Title of the recipe",
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "step": "Step",
+    "photo": "Add a photo",
+    "button": "CREATE RECIPE"
+  },
+  "favorites": {
+    "allFavorites": "All your favorites"
+  },
+  "index": {
+    "welcome": "WELCOME TO",
+    "login": "LOGIN",
+    "register": "REGISTER"
+  },
+  "login": {
+    "mail": "EMAIL ADDRESS",
+    "password": "PASSWORD",
+    "login": "LOGIN"
+  },
+  "register": {
+    "mail": "EMAIL ADDRESS",
+    "firstname": "FIRSTNAME",
+    "lastname": "LASTNAME",
+    "password": "PASSWORD",
+    "passwordConfirm": "CONFIRMATION",
+    "register": "REGISTER"
+  },
+  "settings": {
+    "logout": "Logout"
+  }
 }

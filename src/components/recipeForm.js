@@ -63,7 +63,7 @@ const RecipeForm = props => {
             alert("Vous n'avez indiqué aucune photo")
         else {
             data.idUser = localStorage.getItem('idUser')
-            setValid(await valid + props.actions.recipe.createRecipe(data).query)
+            setValid(await valid + props.actions.recipe.createRecipe(data))
 
             const fileData = new FormData()
             fileData.append('file', file)

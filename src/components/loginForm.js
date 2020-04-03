@@ -28,7 +28,7 @@ const LoginForm = props => {
 
     const handleClick = async event => {
         event.preventDefault()
-        if (await props.actions.login.login(data).query) window.location.reload()
+        if (await props.actions.login.login(data)) window.location.reload()
     }
 
     return (
@@ -56,7 +56,6 @@ const LoginForm = props => {
         }/>
     )
 }
-
 
 const mapStateToProps = state => ({
     loginState: state.login

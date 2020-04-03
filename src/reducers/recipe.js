@@ -1,37 +1,24 @@
 import {GET_RECIPE, FETCH_RECIPE, FETCH_RECIPES_FAVS, CREATE_RECIPE, POST_PHOTO} from '../actions/recipe'
 
 const initialState = {
-    recipe: []
+    recipe: [],
+    recipes: [],
+    recipesFav: []
 }
 
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case GET_RECIPE:
-            return {
-                ...state,
-                recipe: action.data
-            }
+            return {...state, recipe: action.payload}
         case FETCH_RECIPE:
-            return {
-                ...state,
-                recipe: action.data
-            }
+            return {...state, recipes: action.payload}
         case FETCH_RECIPES_FAVS:
-            return {
-                ...state,
-                recipe: action.data
-            }
+            return {...state, recipesFav: action.payload}
         case CREATE_RECIPE:
-            return {
-                ...state,
-                recipe: action.data
-            }
+            return state
         case POST_PHOTO:
-            return {
-                ...state,
-                recipe: action.data
-            }
+            return state
         default:
             return state
     }

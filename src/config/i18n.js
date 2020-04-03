@@ -16,8 +16,6 @@ i18n
         resources,
         lng: `${localStorage.getItem('language') ? localStorage.getItem('language') : 'fr' }`,
 
-        keySeparator: false, // we do not use keys in form messages.welcome
-
         interpolation: {
             escapeValue: false // react already safes from xss
         }
