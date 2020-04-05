@@ -7,7 +7,7 @@ const StyledNavBar = styled.div`
     position: fixed;
     width: 100%;
     height: 9vh;
-    background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
+    background-color: ${props => props.theme.primary};
     left: 0;
     top: 0;
     display: flex;

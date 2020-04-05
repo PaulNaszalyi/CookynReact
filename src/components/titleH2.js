@@ -5,7 +5,7 @@ const StyledH2 = styled.h2`
   margin: 15px 0;
   font-size: 20px;
   border-bottom: 1px solid #b21f66;
-  color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
+  color: ${props => props.theme.textColor};
 `
 
 const TitleH2 = ({

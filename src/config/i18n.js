@@ -10,11 +10,14 @@ const resources = {
     fr: {translation: translationFR}
 }
 
+const localStore = JSON.parse(localStorage.getItem('persist:cookyn'))
+const localLanguage = JSON.parse(localStore.language)
+
 i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: `${localStorage.getItem('language') ? localStorage.getItem('language') : 'fr' }`,
+        lng: `${localLanguage.language ? localLanguage.language : 'fr' }`,
 
         interpolation: {
             escapeValue: false // react already safes from xss

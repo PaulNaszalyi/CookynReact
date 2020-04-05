@@ -5,9 +5,10 @@ import {useHistory} from 'react-router-dom'
 const DivContent = styled.div`
   margin: 15px 0;
   display: flex;
-  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.clearGrey : '#fff'};
-  color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
-  box-shadow: 0px 0px 5px 0px ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.borderGrey : props.theme.lightTheme.borderGrey};  
+  color: ${props => props.theme.textColor};
+  background-color: ${props => props.theme.themeName === 'dark' ? 'transparent' : props.theme.backgroundColor};
+  box-shadow: 0px 0px 5px 0px ${props => props.theme.themeName === 'dark' ? 'transparent' : props.theme.borderGrey};
+  border: 1px solid ${props => props.theme.themeName === 'dark' ? '#444444' : 'transparent'};
 `
 
 const DivImage = styled.div`

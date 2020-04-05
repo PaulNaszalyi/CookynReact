@@ -5,7 +5,7 @@ const BigTitle = styled.h1`
   text-align: center;
   margin: 15px 0;
   margin-bottom: 20px;
-  color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
+  color: ${props => props.theme.textColor};
 `
 
 const TitleH1 = ({title = ""}) => {

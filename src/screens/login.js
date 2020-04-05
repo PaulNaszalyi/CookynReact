@@ -28,22 +28,18 @@ const DivButtons = styled.div`
 const Button = styled.button`
   width: 50%;
   height: 50px;
-  background-color: ${prop => prop.connexion ?
-    props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary
-    : '#fff'};
-  color: ${prop => prop.connexion ?
-    '#fff'
-    : props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
+  background-color: ${props => props.connexion ? 'transparent' : props.theme.primary};
+  color: ${props => props.connexion ? props.theme.primary : props.theme.white};
   font-family: 'Sen', sans-serif;
   font-weight: bold;
   font-size: 18px;
   outline: none;
   transition: 0.3s;
-  border: 1px solid ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.primary : props.theme.lightTheme.primary};
+  border: 1px solid ${props => props.theme.primary};
   
   :hover, :focus {
-    background-color: ${prop => prop.connexion ? '#b21f66' : 'transparent'};
-    color: ${prop => prop.connexion ? '#fff' : '#b21f66'};
+    background-color: ${props => props.theme.primary};
+    color: ${props => props.theme.white};
   }
 `
 

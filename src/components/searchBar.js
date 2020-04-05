@@ -7,9 +7,9 @@ const StyledDiv = styled.div`
 `
 
 const StyledInput = styled.input`
-  border: 1px solid ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.borderGrey : props.theme.lightTheme.primary};
-  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.inputGrey : '#fff'};
-  color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
+  border: 1px solid ${props => props.theme.borderGrey};
+  background-color: ${props => props.theme.inputGrey};
+  color: ${props => props.theme.textColor};
   height: 35px;
   width: 100%;
   outline: none;
@@ -18,7 +18,7 @@ const StyledInput = styled.input`
   font-family: 'Sen', sans-serif;
   
   ::placeholder {
-    color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.textColor : props.theme.lightTheme.textColor};
+    color: ${props => props.theme.textColor};
   }
 `
 

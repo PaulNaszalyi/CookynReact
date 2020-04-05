@@ -8,7 +8,7 @@ import logger from 'redux-logger'
 const persistConfig = {
     key: 'cookyn',
     storage: storage,
-    whitelist: ['cookyn', 'favorite', 'recipe', 'login']
+    whitelist: ['cookyn', 'favorite', 'recipe', 'login', 'theme', 'language']
 }
 const pReducer = persistReducer(persistConfig, reducers)
 const store = createStore(pReducer, applyMiddleware(logger, thunk))

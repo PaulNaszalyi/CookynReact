@@ -20,7 +20,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CookynAPI" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ReactTips" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="P:\Programmes\JetBrains\WebStorm 2018.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
@@ -60,7 +60,9 @@
       <workItem from="1585584941483" duration="956000" />
       <workItem from="1585585910022" duration="8692000" />
       <workItem from="1585738923674" duration="12083000" />
-      <workItem from="1585936115870" duration="8184000" />
+      <workItem from="1585936115870" duration="8905000" />
+      <workItem from="1586004806834" duration="809000" />
+      <workItem from="1586087742004" duration="10429000" />
     </task>
     <servers />
   </component>
@@ -80,11 +82,11 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="366" y="351" width="943" height="345" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1585224022288" />
-    <state x="481" y="281" key="FileChooserDialogImpl" timestamp="1585936160914">
+    <state x="481" y="281" key="FileChooserDialogImpl" timestamp="1586088212595">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
     <state x="481" y="278" key="FileChooserDialogImpl/0.0.2560.1040@0.0.2560.1040" timestamp="1585775875946" />
-    <state x="481" y="281" key="FileChooserDialogImpl/0.0.2560.1050@0.0.2560.1050" timestamp="1585936160914" />
+    <state x="481" y="281" key="FileChooserDialogImpl/0.0.2560.1050@0.0.2560.1050" timestamp="1586088212595" />
     <state width="1537" height="117" key="GridCell.Tab.0.bottom" timestamp="1585586294494">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -105,6 +107,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.2560.1040@0.0.2560.1040" timestamp="1585262736277" />
+    <state x="374" y="247" key="run.anything.popup" timestamp="1586105434547">
+      <screen x="0" y="0" width="2560" height="1050" />
+    </state>
+    <state x="374" y="247" key="run.anything.popup/0.0.2560.1050@0.0.2560.1050" timestamp="1586105434547" />
     <state x="462" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1584738002320">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

@@ -12,30 +12,39 @@ import ViewRecipe from "../screens/viewRecipe"
 import Favorites from "../screens/favorites"
 import Settings from "../screens/settings"
 import styled from "styled-components"
+import {ThemeProvider} from 'styled-components'
+//---connect
+import {connect} from 'react-redux'
+//---
 
 const Container = styled.div`
   padding: 15px;
   padding-top: 11vh;
   min-height: 100vh;
-  background-color: ${props => localStorage.getItem('theme') === 'dark' ? props.theme.darkTheme.grey : props.theme.lightTheme.grey};
+  background-color: ${props => props.theme.grey};
   box-sizing: border-box;
 `
 
-const Routing = (...props) => {
+const Routing = (props) => {
     const token = !!localStorage.getItem('token')
 
     const PublicRoute = ({component: Component, ...props}) => {
         return (
-            <Route {...props}
-                   render={innerProps => token ? <Redirect to='/home'/> : <Component {...innerProps} />}/>
+            <ThemeProvider theme={props.themeState.theme}>
+                <Route {...props}
+                       render={innerProps => token ? <Redirect to='/home'/> : <Component {...innerProps} />}/>
+            </ThemeProvider>
         )
     }
 
     const PrivateRoute = ({component: Component, ...props}) => {
         return (
-            <Container>
-                <Route {...props} render={innerProps => token ? <Component {...innerProps} /> : <Redirect to='/'/>}/>
-            </Container>
+            <ThemeProvider theme={props.themeState.theme}>
+                <Container>
+                    <Route {...props}
+                           render={innerProps => token ? <Component {...innerProps} /> : <Redirect to='/'/>}/>
+                </Container>
+            </ThemeProvider>
         )
     }
 
@@ -53,4 +62,8 @@ const Routing = (...props) => {
     )
 }
 
-export default Routing
+const mapStateToProps = state => ({
+    themeState: state.theme,
+})
+
+export default connect(mapStateToProps)(Routing)
