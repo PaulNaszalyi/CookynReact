@@ -13,6 +13,7 @@ import {withTranslation} from 'react-i18next'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import allTheActions from '../actions'
+import SwitchOnOff from "../components/switchOnOff"
 //---
 
 const Back = styled.div`
@@ -21,34 +22,40 @@ const Back = styled.div`
   left: 15px;
 `
 
+const SubTitle = styled.p`
+  font-size: 20px;
+  border-bottom: 1px solid #b21f66;
+  color: ${props => props.theme.textColor};
+`
+
 const LogoutButton = styled.button`
   border: none;
   background-color: ${props => props.theme.primary};
+  width: 150px;
   color: #fff;
   padding: 15px;
   font-weight: bold;
   border-radius: 50px;
   text-transform: uppercase;
-`
-
-const SwitchTheme = styled.div`
-  color: ${props => props.theme.textColor};
-  text-align: center;
-  font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  letter-spacing: 1px;
+  font-family: 'Sen', sans-serif;
 `
 
 const Settings = (props) => {
-    console.log(props)
     const userInfo = {
         firstname: localStorage.getItem('firstname'),
         lastname: localStorage.getItem('lastname')
     }
 
-    const changeLanguage = (lng) => {
+    const changeLanguage = (lng = 'fr') => {
+        if (props.languageState.language === 'fr') lng = 'en'
         props.actions.language.switchLanguage(lng)
         i18n.changeLanguage(lng)
+    }
+
+    const changeTheme = (theme = lightTheme) => {
+        if (props.themeState.theme.themeName === 'light') theme = darkTheme
+        props.actions.theme.switchTheme(theme)
     }
 
     return (
@@ -67,29 +74,27 @@ const Settings = (props) => {
 
                 </Back>
                 <TitleH1 title={`${userInfo.firstname} ${userInfo.lastname}`}/>
+
                 <div>
-                    <>
-                        {
-                            props.languageState.language === 'en' ?
-                                <SwitchTheme>
-                                    <span onClick={() => changeLanguage('fr')}>Français</span>
-                                </SwitchTheme> :
-                                <SwitchTheme>
-                                    <span onClick={() => changeLanguage('en')}>English</span>
-                                </SwitchTheme>
-                        }
-                    </>
-                    <>
-                        {
-                            props.themeState.theme.themeName === 'dark' ?
-                                <SwitchTheme>
-                                <span onClick={() => props.actions.theme.switchTheme(lightTheme)}>LIGHT MODE</span>
-                                </SwitchTheme> :
-                                <SwitchTheme>
-                                <span onClick={() => props.actions.theme.switchTheme(darkTheme)}>DARK MODE</span>
-                                </SwitchTheme>
-                        }
-                    </>
+                    <SubTitle>{props.t('settings.changeLanguage')}</SubTitle>
+                    <SwitchOnOff
+                        id="language"
+                        spanLeft="Français"
+                        spanRight="English"
+                        defaultChecked={(props.languageState.language === "en")}
+                        onClick={() => changeLanguage()}
+                        language={true}
+                    />
+                </div>
+                <div>
+                    <SubTitle>{props.t('settings.changeTheme')}</SubTitle>
+                    <SwitchOnOff
+                        id="theme"
+                        spanLeft={props.t('settings.lightTheme')}
+                        spanRight={props.t('settings.darkTheme')}
+                        defaultChecked={(props.themeState.theme.themeName === "dark")}
+                        onClick={() => changeTheme()}
+                    />
                 </div>
                 <LogoutButton onClick={() => Logout()}> {props.t('settings.logout')} </LogoutButton>
             </>

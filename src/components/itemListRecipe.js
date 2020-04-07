@@ -8,7 +8,7 @@ const DivContent = styled.div`
   color: ${props => props.theme.textColor};
   background-color: ${props => props.theme.themeName === 'dark' ? 'transparent' : props.theme.backgroundColor};
   box-shadow: 0px 0px 5px 0px ${props => props.theme.themeName === 'dark' ? 'transparent' : props.theme.borderGrey};
-  border: 1px solid ${props => props.theme.themeName === 'dark' ? '#444444' : 'transparent'};
+  border: 2px solid ${props => props.theme.backgroundColor};
 `
 
 const DivImage = styled.div`
@@ -26,7 +26,7 @@ const DivDescription = styled.div`
 `
 
 const TitleRecipe = styled.h3`
-
+  letter-spacing: 1px;
 `
 
 const ItemListRecipe = ({source = "", title = "", description = "", idRecipe = ""}) => {

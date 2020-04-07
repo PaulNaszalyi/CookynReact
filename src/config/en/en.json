@@ -41,6 +41,10 @@
     "register": "REGISTER"
   },
   "settings": {
-    "logout": "Logout"
+    "logout": "Logout",
+    "lightTheme": "Light",
+    "darkTheme": "Dark",
+    "changeLanguage": "Change language",
+    "changeTheme": "Change theme"
   }
 }

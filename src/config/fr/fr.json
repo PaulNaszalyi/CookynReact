@@ -41,6 +41,10 @@
     "register": "INSCRIPTION"
   },
   "settings": {
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "lightTheme": "Clair",
+    "darkTheme": "Foncé",
+    "changeLanguage": "Changer la langue",
+    "changeTheme": "Changer le thème"
   }
 }

@@ -2,8 +2,10 @@ import React from "react"
 import styled from "styled-components"
 
 const Styled = styled.p`
-  margin: 0;
-  margin-top: ${props => props.marginTop};
+  margin-top: ${props => props.marginTop}; 
+  margin-right: ${props => props.marginRight}; 
+  margin-bottom: ${props => props.marginBottom}; 
+  margin-left: ${props => props.marginLeft};
   text-align: justify;
   width: 100%;
 `
@@ -15,7 +17,7 @@ const StyledParagraph = ({
                              marginBottom = 0,
                              marginLeft = 0
                          }) => {
-    return <Styled>
+    return <Styled marginTop={marginTop} marginRight={marginRight} marginBottom={marginBottom} marginLeft={marginLeft}>
         {content}
     </Styled>
 }

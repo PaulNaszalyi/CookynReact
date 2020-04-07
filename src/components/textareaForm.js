@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledInput = styled.textarea`
-  border: 1px solid ${props => props.theme.primary};
-  background-color: ${props => props.theme.inputGrey};
+  border: 1px solid ${props => props.theme.borderInput};
+  background-color: ${props => props.theme.backgroundInput};
   color: ${props => props.theme.textColor};
   width: 100%;
   margin-bottom: 15px;

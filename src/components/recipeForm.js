@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useState} from "react"
 import {useHistory} from "react-router"
 import InputForm from "./inputForm"
 import TextareaForm from "./textareaForm"
@@ -6,7 +6,7 @@ import LabelForm from "./labelForm"
 import ButtonForm from "./buttonForm"
 import RedStar from "./redStar"
 import StyledParagraph from "./styledParagraph"
-import PlusLightTheme from '../assets/addStepLightTheme.png'
+import PlusLightTheme from '../assets/addStep.png'
 import PlusDarkTheme from '../assets/addStepDarkTheme.png'
 import styled from "styled-components"
 import Swal from 'sweetalert2'
@@ -38,7 +38,6 @@ const RecipeForm = props => {
     const [steps, setSteps] = useState(FirstStep)
     const [data, setData] = useState({})
     const [file, setFile] = useState(null)
-    const [valid, setValid] = useState(0)
 
     const history = useHistory()
 
@@ -63,31 +62,25 @@ const RecipeForm = props => {
             alert("Vous n'avez indiqué aucune photo")
         else {
             data.idUser = localStorage.getItem('idUser')
-            setValid(await valid + props.actions.recipe.createRecipe(data))
-
             const fileData = new FormData()
             fileData.append('file', file)
-            setValid(await valid + props.actions.recipe.postPhoto(fileData))
+
+            if (await props.actions.recipe.createRecipe(data) && await props.actions.recipe.postPhoto(fileData))
+                Swal.fire(
+                    'Bravo !',
+                    'Création de la recette réussie !',
+                    'success'
+                ).then(() => {
+                    history.push('/home')
+                })
         }
     }
-
-    useEffect(() => {
-        if (valid === 2) {
-            Swal.fire(
-                'Bravo !',
-                'Création de la recette réussie !',
-                'success'
-            ).then(() => {
-                history.push('/home')
-            })
-        }
-    }, [valid, history])
 
     return (
         <>
             <StyledParagraph
                 content={props.t('newRecipe.info')}
-                marginTop={50}
+                marginBottom={"35px"}
             />
             <br/>
             <form onSubmit={handleSubmit}>
@@ -111,7 +104,7 @@ const RecipeForm = props => {
                 )}
 
                 <AlignCenter>
-                    <Image src={localStorage.getItem('theme') === 'dark' ? PlusDarkTheme : PlusLightTheme} width={35}
+                    <Image src={props.themeState.theme.themeName === 'dark' ? PlusDarkTheme : PlusLightTheme} width={35}
                            height={35} alt="Ajouter un étape" onClick={addStep}/>
                 </AlignCenter>
 
@@ -127,7 +120,8 @@ const RecipeForm = props => {
 
 const mapStateToProps = state => ({
     favoriteState: state.favorite,
-    recipeState: state.recipe
+    recipeState: state.recipe,
+    themeState: state.theme
 })
 
 const mapDispatchToProps = () => dispatch => ({

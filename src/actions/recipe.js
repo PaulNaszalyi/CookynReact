@@ -47,7 +47,6 @@ export const fetchRecipesByFavs = data => dispatch => {
 }
 
 export const createRecipe = data => dispatch => {
-    console.log(data)
     return axios.post(`${ENV.API}/recette`, data)
         .then(res => {
             if (res.data.errmsg) {

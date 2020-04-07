@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
 
 const StyledInput = styled.input`
   border: 1px solid ${props => props.theme.borderGrey};
-  background-color: ${props => props.theme.inputGrey};
+  background-color: ${props => props.theme.backgroundInput};
   color: ${props => props.theme.textColor};
   height: 35px;
   width: 100%;
