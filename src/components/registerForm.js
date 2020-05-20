@@ -36,7 +36,7 @@ const RegsiterForm = props => {
                 lastname: data.lastname,
                 password: data.password
             }
-            if (await props.actions.login.register(dataUser).query) window.location.reload()
+            if (await props.actions.login.register(dataUser)) window.location.reload()
         } else alert('Les mots de passe sont différents')
 
     }
